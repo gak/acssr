@@ -62,7 +62,6 @@ class Banner {
         $g = hexdec(substr($c, 2, 2));
         $b = hexdec(substr($c, 4, 2));
 		$c = imagecolorallocate($this->image, $r, $g, $b);
-		echo "<!-- $r $g $b $a -->";
 		return $c;
 	}
 

@@ -239,6 +239,10 @@ td.legend10 {
 
 }
 
+th {
+	font-size: 11px;	
+	background-color: #0D3237;
+}
 
 th.rank {
 

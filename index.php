@@ -160,6 +160,19 @@ if (!isset($_SESSION) || !isset($_SESSION["user"])) {
 	
 	echo "Configure your <a href=\"memberadvancedprofile.php\">player profile banner</a> to put in your forum signatures and web site.<br><br>";
 
+	$datTag = $db->quickquery("select clantag, clanpos from user where id = {$user->id}");
+?>
+If you are in a clan, specify your clan tag here to be listed in the clans section<br>
+<form action="setclan.php" method="post">
+Clan tag: <input type="text" name="clantag" value="<?=$datTag->clantag?>" size="5">
+Tag alignment: <select name="clanpos">
+<option value="0"<?if ($datTag->clanpos==0)echo " SELECTED";?>>Left
+<option value="1"<?if ($datTag->clanpos==1)echo " SELECTED";?>>Right
+</select>
+<input type="submit" value="update">
+</form><small>Set to nothing if you want to remove the tag.</small><br><br>
+
+<?
 	echo "Feel free to <a href=\"logout.php\">log out</a>. ACSSR should remember you for a week otherwise.";
 	
 	echo "</div>";

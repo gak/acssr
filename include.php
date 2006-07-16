@@ -48,7 +48,7 @@
 		diemessage('ACSSR daily backup is currently running. This usually takes about 5 minutes.');
 	}
 	
-	if (file_exists("dailycull.lock") || 0) {
+	if (file_exists("dailycull.lock") && 0) {
 		diemessage('ACSSR player maintenance is currently running. This usually doesn\'t take too long. Please come back soon!');
 	}
 	

@@ -5,11 +5,11 @@ $C_DATABASE_DIEONERROR = true;
 $menus = array(
 
 	array("link"=>".", "name"=>"Home"),
+	array("link"=>"search.php", "name"=>"Search"),
 //	array("link"=>"news.php", "name"=>"News"),
 //	array("link"=>"about.php", "name"=>"About"),
 	array("link"=>"ladder.php", "name"=>"Ranks"),
-//	array("link"=>"clans.php", "name"=>"Clans"),
-	array("link"=>"search.php", "name"=>"Search"),
+	array("link"=>"clans.php", "name"=>"Clans"),
 	array("link"=>"servers.php", "name"=>"Servers"),
 	array("link"=>"faq.php", "name"=>"FAQ"),
 	array("link"=>"forum/", "name"=>"Forum"),

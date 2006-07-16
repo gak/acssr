@@ -328,7 +328,7 @@ td.search input {
 	border: 0px;
 }
 </style>
-<form method="GET" action="/search.php" style="width: 980; padding:0; margin:0; margin-left: 10px; margin-right: 10px;"><table style="width: 100%; background-color: #000;"><tr><td class="navigation"><a class="navigation" href="/">Home</a><a class="navigation" href="/ladder.php">Ranks</a><a class="navigation" href="/search.php">Search</a><a class="navigation" href="/servers.php">Servers</a><a class="navigation" href="/faq.php">FAQ</a><a class="navigation" href="/forum/">Forum</a><a class="navigation" href="/misc.php">Miscellaneous</a>
+<form method="GET" action="/search.php" style="width: 980; padding:0; margin:0; margin-left: 10px; margin-right: 10px;"><table style="width: 100%; background-color: #000;"><tr><td class="navigation"><a class="navigation" href="/">Home</a><a class="navigation" href="/search.php">Search</a><a class="navigation" href="/ladder.php">Ranks</a><a class="navigation" href="/clans.php">Clans</a><a class="navigation" href="/servers.php">Servers</a><a class="navigation" href="/faq.php">FAQ</a><a class="navigation" href="/forum/">Forum</a><a class="navigation" href="/misc.php">Miscellaneous</a>
 <td class="search"><input type="text" name="search" value="search for a player"
 onfocus="if (this.value == 'search for a player') this.value = '';"
 >
