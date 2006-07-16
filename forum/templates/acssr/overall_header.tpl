@@ -240,7 +240,6 @@ td.navigation {
 
     vertical-align: middle;
     background-color: black;
-    padding: 6px 6px 6px 6px;
     padding: 0;
 	margin: 0;
 
@@ -249,7 +248,6 @@ td.navigation {
 
 a.navigation, a.navigation:visited {
 
-    width: 300px;
     font-weight: bold;
     border-right: 1px solid white;
 	margin: 0;
