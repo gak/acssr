@@ -131,10 +131,11 @@ a.gen2:hover,a.genmed2:hover,a.gensmall2:hover	{ color: #FFF600; text-decoration
 .mainmenu		{ font-size : 11px; color : #FFFFFF; }
 a.mainmenu		{ text-decoration: none; color : #FFF600 }
 a.mainmenu:hover	{ text-decoration: underline; color : #FFF600; }
-td.mainmenu		{
+td.mainmenu	{
 
-        padding: 0px 10px 0px 10px;
-        margin: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	background-color: #000;
+	height: 18px;
 }
 
 /* Forum category titles */
@@ -235,24 +236,39 @@ input.liteoption {
 /* Import the fancy styles for IE only (NS4.x doesn't use the @import function) */
 @import url("templates/acssr/formIE.css"); 
 
-a.navigation:hover {
+td.navigation {
 
-	background-color: #000;
-	text-decoration: none;
+    vertical-align: middle;
+    background-color: black;
+    padding: 6px 6px 6px 6px;
+    padding: 0;
+	margin: 0;
 
 }
 
 
 a.navigation, a.navigation:visited {
 
-	color: #FFF600;
+    width: 300px;
+    font-weight: bold;
+    border-right: 1px solid white;
+	margin: 0;
+    padding: 2px 20px 2px 20px;
+    background-color: #116A70;
+    background-color: black;
+	color: yellow;
 	text-decoration: none;
-	/*width: 300px;*/
-	padding: 2px 20px 2px 20px;
-	background-color: #116A70;
+	font-size: 11px;
 
 }
 
+a.navigation:hover {
+
+    background-color: #FFF;
+    color: #000;
+    text-decoration: none;
+
+}
 
 -->
 </style>
@@ -294,7 +310,32 @@ google_color_text = "99FF66";
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
 </table>
+<style>
+td.search {
 
-<table width="1000" cellspacing="0" border="0"><tr><td align="left" valign="top" nowrap="nowrap" class="mainmenu">
-<a class="navigation" hreF="/">Home</a><a class="navigation" href="{U_SEARCH}">{L_SEARCH}</a><!--<a class="navigation" href="{U_MEMBERLIST}">{L_MEMBERLIST}</a>--><a class="navigation" href="{U_REGISTER}">{L_REGISTER}</a><a class="navigation" href="{U_PROFILE}">{L_PROFILE}</a><a class="navigation" href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a><a class="navigation" href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>
-</table><table width="1000" cellspacing="0" border="0" style="padding: 0 10 0 10;"><tr><td>
+    width: 200px;
+    vertical-align: top;
+    text-align: right;
+    background-color: black;
+
+}
+
+td.search input {
+	color: #fff;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+	background-color: #000;
+	border: 0px;
+}
+</style>
+<form method="GET" action="/search.php" style="width: 980; padding:0; margin:0; margin-left: 10px; margin-right: 10px;"><table style="width: 100%; background-color: #000;"><tr><td class="navigation"><a class="navigation" href="/">Home</a><a class="navigation" href="/ladder.php">Ranks</a><a class="navigation" href="/search.php">Search</a><a class="navigation" href="/servers.php">Servers</a><a class="navigation" href="/faq.php">FAQ</a><a class="navigation" href="/forum/">Forum</a><a class="navigation" href="/misc.php">Miscellaneous</a>
+<td class="search"><input type="text" name="search" value="search for a player"
+onfocus="if (this.value == 'search for a player') this.value = '';"
+>
+</table>
+
+<table width="980" cellspacing="0" border="0" align="center" style="padding-top: 2px;"><tr><td align="left" valign="top" class="mainmenu">
+<a class="navigation" hreF="/forum/">Index</a><a class="navigation" href="{U_SEARCH}">{L_SEARCH}</a><!--<a class="navigation" href="{U_MEMBERLIST}">{L_MEMBERLIST}</a>--><a class="navigation" href="{U_REGISTER}">{L_REGISTER}</a><a class="navigation" href="{U_PROFILE}">{L_PROFILE}</a><a class="navigation" href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a><a class="navigation" href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>
+</table></form><table width="1000" cellspacing="0" border="0" style="padding: 0 10 0 10;"><tr><td>
