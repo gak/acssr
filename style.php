@@ -71,14 +71,18 @@ a.ausourcelink {
 a.navigation {
 
 	width: 300px;
+	font-weight: bold;
+	border-right: 1px solid white;
 	padding: 2px 20px 2px 20px;
 	background-color: #116A70;
+	background-color: black;
 
 }
 
 a.navigation:hover {
 
-	background-color: #000;
+	background-color: #FFF;
+	color: #000;
 	text-decoration: none;
 
 }
@@ -362,14 +366,17 @@ td.search {
 	width: 200px;
 	vertical-align: top;
 	text-align: right;
-	background-color: transparent;
+	background-color: black;
 
 }
 
+
 td.navigation {
 
-	vertical-align: top;
-	background-color: transparent;
+	vertical-align: middle;
+	background-color: black;
+	padding: 6px 6px 6px 6px;
+	padding: 0;
 
 }
 
@@ -409,7 +416,19 @@ input,submit,checkbox,select {
 	font-size: 10px;
 	background-color: #116A70;
 	color: #ffffff;
+	background-color: #000;
+	margin-right: 10px;
+}
 
+submit {
+	margin-top: 2px;
+}
+
+td.search input {
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
+	text-align: right;
 }
 
 table.f {

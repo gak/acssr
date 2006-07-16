@@ -46,7 +46,7 @@ $ops = array(0=>'Name', 1=>'Players Online', 2=>'Map');
 <option value="<?=$k?>"<?if ($k == $sort) echo ' SELECTED';?>><?=$v?>
 <? } ?>
 </select></div>
-<div><input type="submit" value="update"></div>
+<div<?=$st?>>&nbsp;<br><input type="submit" value="update"></div>
 </form>
 </div><br>
 <?

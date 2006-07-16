@@ -40,7 +40,7 @@ google_color_text = "99FF66";
 <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
-</table></div><table class="outline"><tr><td class="outlinebody"><form method="GET" action="search.php"><table style="width: 100%;"><tr><td class="navigation"><?
+</table></div><table class="outline"><tr><td class="outlinebody"><form method="GET" action="search.php"><table style="width: 100%; background-color: #000;" ><tr><td class="navigation"><?
 
 global $db;
 
@@ -62,10 +62,8 @@ foreach ($menus as $menu) {
 ?>
 
 <td class="search"><input type="text" name="search" value="search for a player"
-
 onfocus="if (this.value == 'search for a player') this.value = '';"
-
-><input type="submit" value="go">
+><!--<input type="submit" value="go">-->
 
 </table>
 </form>
