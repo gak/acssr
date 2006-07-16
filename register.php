@@ -18,9 +18,9 @@ if (isset($_POST["username"])) {
 	$email = $_POST["email"];
 	// $html = isset($_POST["html"]);
 	$html = 0;
-
-	$cap = $_SESSION['cap'];
-	if ($cap->word != strtolower($_POST['cap'])) {
+	
+	# $cap = $_SESSION['cap'];-->
+	if (0 || $cap->word != strtolower($_POST['cap'])) {
 		$error = "Image Verification failed. Please try it again.";
 	} else {
 		$user = new User();
@@ -83,10 +83,12 @@ $_SESSION['cap'] = $cap;
 <small>You need to have access to this email account if you want to log in.</small><br>
 <input type="text" name="email" value="<?=$email?>" size="40"><br><br>
 
+<!--
 <b>Image Verification</b><br>
 <small>Simply type in the word you see.</small><br>
 <img src="<?=$cap->filename?>"><br>
 <input type="text" name="cap" value="" size="10"><br><br>
+-->
 
 <input type="submit" value="Register Now">
 
