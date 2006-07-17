@@ -77,7 +77,7 @@ htmlStart();
 homeHeading('Clans');
 htmlArticleStart();
 ?>
-These are the daily registered clan ranks. To register your clan you must be a member of ACSSR. These rankings are calculated daily. Clans only are shown on the list if they have <?=$minplayers?> members who have played in the last fortnight. The score is the sum of the best <?=$minplayers?> clan members of each clan.
+These are the registered clan ranks. To register your clan you must be a member of ACSSR. Clans only are shown on the list if they have <?=$minplayers?> members who have played in the last fortnight. The score is the sum of the best <?=$minplayers?> clan members of each clan.
 <?
 htmlArticleStop();
 homeHeading('Rankings');
