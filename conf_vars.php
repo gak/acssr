@@ -2,6 +2,8 @@
 
 $C_DATABASE_DIEONERROR = true;
 
+$minclanplayers = 8;
+
 $menus = array(
 
 	array("link"=>".", "name"=>"Home"),
