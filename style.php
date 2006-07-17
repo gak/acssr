@@ -74,8 +74,6 @@ a.navigation {
 	font-weight: bold;
 	border-right: 1px solid white;
 	padding: 2px 20px 2px 20px;
-	background-color: #116A70;
-	background-color: black;
 
 }
 
@@ -370,7 +368,7 @@ td.search {
 	width: 200px;
 	vertical-align: top;
 	text-align: right;
-	background-color: black;
+	background-color: #0D3237;
 
 }
 
@@ -379,6 +377,7 @@ td.navigation {
 
 	vertical-align: middle;
 	background-color: black;
+	background-color: #0D3237;
 	padding: 6px 6px 6px 6px;
 	padding: 0;
 
@@ -420,7 +419,7 @@ input,submit,checkbox,select {
 	font-size: 10px;
 	background-color: #116A70;
 	color: #ffffff;
-	background-color: #000;
+	background-color: #0D3237;
 	margin-right: 10px;
 }
 
@@ -433,6 +432,7 @@ td.search input {
 	margin: 0;
 	padding: 0;
 	text-align: right;
+	background-color: #0D3237;
 }
 
 table.f {

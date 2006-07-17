@@ -2,8 +2,29 @@
 include 'include.php';
 $clans = array();
 $res = $db->query('select clantag, clanpos from user where clantag is not null and clanpos is not null group by clantag, clanpos');
+$minplayers = 8;
+
+function meh($a, $b) {
+	return (object)array('clantag'=>$a,'clanpos'=>$b);
+}
+
+$a = array();
+$a[] = meh('[FBi]',1);
+$a[] = meh('[brtz.]',0);
+$a[] = meh('(eu)',0);
+$a[] = meh('team.sync',0);
+$a[] = meh('iCHOR *',0);
+$a[] = meh('[virgins]',1);
+$a[] = meh('Livid.',0);
+$a[] = meh(' 3vX',1);
+$a[] = meh('CB-|',0);
+$a[] = meh('|RS|',0);
+$a[] = meh('.::MaFia::. | ',0);
+
+
 while ($dat = $db->fetchObject($res)) {
-	if (1)
+#foreach($a as $dat) {
+
 	if ($dat->clanpos == 0)
 		$s = str_to_sql($dat->clantag.'%');
 	else
@@ -18,7 +39,7 @@ while ($dat = $db->fetchObject($res)) {
 		and lastserverwhen > unix_timestamp() - 60*60*24*14
 	");
 
-	if ($dCount->c < 6)
+	if ($dCount->c < $minplayers)
 		continue;
 
 	$dStats = $db->quickquery("
@@ -29,7 +50,7 @@ while ($dat = $db->fetchObject($res)) {
 			where player.ename like $s
 			and lastserverwhen > unix_timestamp() - 60*60*24*14
 			order by score desc
-			limit 6
+			limit $minplayers 
 		) as poo
 	");
 
@@ -56,7 +77,7 @@ htmlStart();
 homeHeading('Clans');
 htmlArticleStart();
 ?>
-These are the daily registered clan ranks. To register your clan you must be a member of ACSSR. These rankings are calculated daily. Clans only are shown on the list if they have 6 members who have played in the last fortnight. The score is the sum of the best 6 clan members of each clan.
+These are the daily registered clan ranks. To register your clan you must be a member of ACSSR. These rankings are calculated daily. Clans only are shown on the list if they have <?=$minplayers?> members who have played in the last fortnight. The score is the sum of the best <?=$minplayers?> clan members of each clan.
 <?
 htmlArticleStop();
 homeHeading('Rankings');
@@ -71,7 +92,8 @@ foreach ($clans as $c) {
 	print $td;
 	print $r;
 	print $td;
-	print $c[0]->clantag;
+	$w = ($c[0]->clanpos == 0)?'start':'end';
+	print "<a href=\"search.php?{$w}with=1&search=" . urlencode($c[0]->clantag) . "\">".htmlspecialchars($c[0]->clantag)."</a>";
 	print $td;
 	print $c[2]->clanscore;
 	print $td;

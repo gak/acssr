@@ -134,7 +134,7 @@ a.mainmenu:hover	{ text-decoration: underline; color : #FFF600; }
 td.mainmenu	{
 
 	margin: 0px 0px 0px 0px;
-	background-color: #000;
+	background-color: #0D3237;
 	height: 18px;
 }
 
@@ -240,6 +240,7 @@ td.navigation {
 
     vertical-align: middle;
     background-color: black;
+	background-color: #0D3237;
     padding: 0;
 	margin: 0;
 
@@ -252,8 +253,6 @@ a.navigation, a.navigation:visited {
     border-right: 1px solid white;
 	margin: 0;
     padding: 2px 20px 2px 20px;
-    background-color: #116A70;
-    background-color: black;
 	color: yellow;
 	text-decoration: none;
 	font-size: 11px;
@@ -314,7 +313,7 @@ td.search {
     width: 200px;
     vertical-align: top;
     text-align: right;
-    background-color: black;
+    background-color: #0D3237;
 
 }
 
@@ -324,11 +323,11 @@ td.search input {
     margin: 0;
     padding: 0;
     text-align: right;
-	background-color: #000;
+	background-color: #0D3237;
 	border: 0px;
 }
 </style>
-<form method="GET" action="/search.php" style="width: 980; padding:0; margin:0; margin-left: 10px; margin-right: 10px;"><table style="width: 100%; background-color: #000;"><tr><td class="navigation"><a class="navigation" href="/">Home</a><a class="navigation" href="/search.php">Search</a><a class="navigation" href="/ladder.php">Ranks</a><a class="navigation" href="/clans.php">Clans</a><a class="navigation" href="/servers.php">Servers</a><a class="navigation" href="/faq.php">FAQ</a><a class="navigation" href="/forum/">Forum</a><a class="navigation" href="/misc.php">Miscellaneous</a>
+<form method="GET" action="/search.php" style="width: 980; padding:0; margin:0; margin-left: 10px; margin-right: 10px;"><table style="width: 100%; background-color: #0D3237;"><tr><td class="navigation"><a class="navigation" href="/">Home</a><a class="navigation" href="/search.php">Search</a><a class="navigation" href="/ladder.php">Ranks</a><a class="navigation" href="/clans.php">Clans</a><a class="navigation" href="/servers.php">Servers</a><a class="navigation" href="/faq.php">FAQ</a><a class="navigation" href="/forum/">Forum</a><a class="navigation" href="/misc.php">Miscellaneous</a>
 <td class="search"><input type="text" name="search" value="search for a player"
 onfocus="if (this.value == 'search for a player') this.value = '';"
 >

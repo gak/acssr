@@ -71,5 +71,6 @@
 		session_start();
 	
 	}
+	$resClans = $db->query('select clantag, clanpos from user where clantag is not null and clanpos is not null group by clantag, clanpos');
 
 ?>

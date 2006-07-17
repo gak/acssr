@@ -4,7 +4,7 @@ require_once("include.php");
 
 htmlStart();
 
-$vars = array("search", "allhistory", 'exact');
+$vars = array("search", "allhistory", 'exact', 'startwith', 'endwith');
 
 foreach($vars as $var) {
 
@@ -44,24 +44,30 @@ if ($search != "") {
 	if (!$allhistory && 0) {
 		$extra .= " player.lastserverwhen > " .  getday(-14) . " and ";
 	}
+	$wc1 = '';
+	$wc2 = '';
 	if ($exact) {
-		$wc1 = '';
+	} elseif ($startwith) {
+		$wc2 = '%';
+	} elseif ($endwith) {
+		$wc1 = '%';
 	} else {
 		$wc1 = '%';
+		$wc2 = '%';
 		if (strlen($search) < $minc) {
 			$err = "Your search query is too short. You need to have at least $minc characters, unless you tick \"Exact matches only.\"";
 		}
 	}
 	
 	if (!isset($err)) {	
-		$n = str_to_sql($wc1.$search.$wc1);
+		$n = str_to_sql($wc1.$search.$wc2);
 		$res = $db->query(
 			"
 			$sqlserverjoin
 			inner join playernames on playernames.playerid = player.id and playernames.ename like 
-			#'$wc1$search$wc1'
 			$n
 			WHERE $extra player.deleted = 0
+			group by playernames.playerid
 			order by score desc, lastserverwhen desc
 			LIMIT 50
 		");
