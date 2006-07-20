@@ -17,7 +17,7 @@ header("Cache-Control: no-cache");
 <meta name="resource-type" content="document">
 <meta name="description" content="A Counter-Strike:Source player ranking and tracking system that monitors Australian servers">
 <meta name="keywords" content="australian, australia, aussie, internode, gamearena, gamespace, 3fl, egn, ihug, iconz, iinet, sgn, swiftgames, xges, css, counter-strike, counter-strike:source, counter, strike, half, life, source, stats, statistics, rank, ranks, ranking, position, positions, ladder, ladders, point, points, frags, score, player, players, clan, clans, stat, game, player, players, server, servers, graph, graphs">
-<meta http-equiv="refresh" content="120">
+<meta http-equiv="refresh" content="60">
 </head>
 <body class="tracker">
 

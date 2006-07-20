@@ -33,7 +33,7 @@ switch ($mode) {
 case 0:
 	if ($search == '')
 		ircerror('ERROR no name specified');
-	$res = $db->query("$sqlserverjoin WHERE player.ename like '%$search%' and lastserverwhen > unix_timestamp() - 60*60*24*14 and deleted = 0 ORDER BY score DESC LIMIT 5");
+	$res = $db->query("$sqlserverjoin WHERE player.ename like '%$search%' and lastserverwhen > unix_timestamp() - 60*60*24*14 and player.deleted = 0 ORDER BY score DESC LIMIT 5");
 	if ($db->count() == 0)
 		die("ACSSR\nSorry, no results found for $search...\n");
 	formatOutput($res);
@@ -46,18 +46,18 @@ case 1:
 	break;
 
 case 2:
-	$res = $db->query("$sqlserverjoin ORDER BY score and deleted = 0 DESC LIMIT 10");
+	$res = $db->query("$sqlserverjoin ORDER BY score and player.deleted = 0 DESC LIMIT 10");
 	formatOutput($res);
 	break;
 
 case 3:
-	$res = $db->query("$sqlserverjoin where curserverid is not NULL and deleted = 0 ORDER BY score DESC LIMIT 10");
+	$res = $db->query("$sqlserverjoin where curserverid is not NULL and player.deleted = 0 ORDER BY score DESC LIMIT 10");
 	formatOutput($res);
 	break;
 
 case 4:
 	if ($search == '') die('ERROR no ID list specified');
-	$res = $db->query("$sqlserverjoin WHERE player.id in ($search) and curserverid is not null and deleted = 0 ORDER BY score DESC LIMIT 10");
+	$res = $db->query("$sqlserverjoin WHERE player.id in ($search) and curserverid is not null and player.deleted = 0 ORDER BY score DESC LIMIT 10");
 	if ($db->count() == 0)
 		die("ACSSR\nNo members are online...\n");
 	formatOutputOnline($res);

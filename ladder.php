@@ -95,7 +95,7 @@ else if ($online == -1) {
 
 }
 
-$where .= " AND player.rank > 0 AND player.score > 0 AND deleted = 0";
+$where .= " AND player.rank > 0 AND player.score > 0 AND player.deleted = 0";
 
 #$sqlcounter = "select count(id) as c from player WHERE 1 = 1 $where";
 #$dat = $db->quickquery($sqlcounter);

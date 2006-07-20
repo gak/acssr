@@ -15,7 +15,7 @@ update player
 set
 rank = (@rank := @rank + 1)
 where player.lastserverwhen > " .  getday(-15) . "
-and deleted = 0
+and player.deleted = 0
 order by score desc;
 ");
 $_p->point("rank");
