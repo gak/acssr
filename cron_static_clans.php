@@ -56,7 +56,7 @@ function m($a, $b) {
 }
 usort($clans, 'm'); 
 
-ob_flush();
+ob_clean();
 
 ?>
 <table><tr><th>#<th>Clan<th>Score<th>Players<th>Points<th>Time<th>Best Player
@@ -85,7 +85,7 @@ foreach ($clans as $c) {
 echo '</table>';
 
 $s = ob_get_contents();
-ob_flush();
+ob_clean();
 $f = fopen('static/clans.htm', 'w');
 fwrite($f, $s);
 fclose($fp);
