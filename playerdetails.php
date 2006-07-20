@@ -379,6 +379,10 @@ if ($historymode == 0) {
 
 }
 
+homeHeading('Map History');
+$db->query("select * from playerserverhistory where playerid = $id");
+print_r($db->fetchAllArray());
+
 homeHeading($vdays . ' Day History Graphs ' . $change);
 
 // set up labels

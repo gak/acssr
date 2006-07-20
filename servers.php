@@ -74,7 +74,7 @@ $res = $db->query("
 	from server
 	left join map on map.id = server.mapid
 	where 1 = 1 $o $sear
-	#	where server.name != 'DOWN'
+	and deleted = 0
 	order by $s
 
 ");

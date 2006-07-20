@@ -86,7 +86,7 @@ while (($dat = $db->fetchobject($res))) {
 	$server->update(& $serveroutput);
 
 	if ($server->name == "" && $server->down) {
-		$db->query("delete from server where id = '{$server->id}'");
+		$db->query("update server set deleted = 1 where id = '{$server->id}'");
 		continue;
 	}	
 	
@@ -302,7 +302,6 @@ while (($dat = $db->fetchobject($res))) {
 	}
 	
 	foreach ($playersToProcess as $player) {
-
 		
 		$player->data->curserverfrags = $player->pfrags;
 		$player->data->curservertime = $player->ptime;
@@ -335,6 +334,42 @@ while (($dat = $db->fetchobject($res))) {
 			}
 			
 		}
+
+		// player history
+		$newRow = false;
+		$sql = "select * from playerserverhistory where playerid = {$player->data->id} order by starttime desc limit 1"; 
+		$datLastMap = $db->quickquery($sql);
+		sql_error_check($sql);
+		
+		if (!$db->count() || !$datLastMap->iscurrent) {
+			$newRow = true;
+			print "Row doesnt exist\n";
+		} else if (!$player->timediff) {
+			print "timediff = 0\n";
+			$newRow = true;
+			$sql = "update playerserverhistory set iscurrent = 0 where id = {$datLastMap->id}"; 
+			$db->query($sql);
+			sql_error_check($sql);
+		}
+
+		if ($newRow) {
+			$g = new generateSQL('playerserverhistory','insert');
+			$g->field('playerid', $player->data->id, 'number');
+			$g->field('serveraddress', $server->address, 'string');
+			$g->field('mapid', $server->mapid, 'number');
+			$g->field('starttime', 'UNIX_TIMESTAMP()', 'number');
+			$g->field('iscurrent', 1, 'number');
+			$g->field('points', $player->fragdiff, 'number');
+			$g->field('totaltime', $player->timediff, 'number');
+		} else {
+			$g = new generateSQL('playerserverhistory','update', $datLastMap->id);
+			$g->field('iscurrent', 1, 'number');
+			$g->field('points', $datLastMap->points + $player->fragdiff, 'number');
+			$g->field('totaltime', $datLastMap->totaltime + $player->timediff, 'number');
+		}
+		$sql = $g->sql();
+		$db->query($sql);
+		sql_error_check($sql);
 
 		if ($debug)		
 			echo("\n");
