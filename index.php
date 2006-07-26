@@ -191,7 +191,7 @@ ACSSR stands for <b>Australian Counter-Strike:Source Rankings</b>. It tracks <a 
 }
 
 require('static/qs.htm');
-require('static/olderwords.htm');
+#require('static/olderwords.htm');
 
 echo "<td class=\"column\">";
 

@@ -590,19 +590,31 @@ function htmlFormText($name, $value = "", $size = 0, $class = "") {
 
 }
 function news($dat) {
+	$subject = $dat->topic_title;
+	$when = $dat->topic_time;
+	$body = $dat->post_text;
+
+	global $db;
+	$d = $db->quickquery('select username from acssrforum.phpbb_users where user_id = ' . $dat->topic_poster);
+	$name = $d->username;
+	$d = $db->quickquery('select count(*) as replies from acssrforum.phpbb_posts where topic_id = ' . $dat->topic_id);
+	$comments = $d->replies - 1;
+	
     echo "<div class=\"articlebody\">";
-    echo "<b>" . $dat->subject . "</b><br>";
+    echo "<b>" . $subject . "</b><br>";
     echo "<div class=\"articlesub\">";
 
-    $ago = now() - $dat->when;
+    $ago = now() - $when;
     if ($ago > 172800)
-        echo mylongdate($dat->when);
+        echo mylongdate($when);
     else
-        echo "Posted " . humantime($ago) . " ago";
+        echo "Posted " . humantime($ago) . " ago by $name";
 
     echo "</div>";
-
-    echo $dat->body;
+	if ($comments == 1) $plural = ''; else $plural = 's';
+    echo $body;
+	#	echo '<a href="/forum/viewtopic.php?t='.$dat->topic_id.'">'.$comments.' comment'.$plural.'</a>.</div>';
+	echo '<div class="articlesub"><br><a href="/forum/posting.php?mode=reply&t=' . $dat->topic_id . '">post comment</a></div>';
     echo "</div>";
 }
 

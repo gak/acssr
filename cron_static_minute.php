@@ -19,22 +19,36 @@ function sb($f) {
 
 set_time_limit(0);
 ob_start();
-
+if (0) {
 /*****************************************************************************************************/
 // olderwords (belongs in cron_static_hourly, or when new news is made ... )
 homeHeading("Older Words");                                                                                  ;
-$res = $db->query("select * from news order by 'when' desc limit 5");
+#$res = $db->query("select * from news order by 'when' desc limit 5");
+$res = $db->query("
+select phpbb_topics.*, phpbb_posts_text.post_text
+from acssrforum.phpbb_topics
+inner join acssrforum.phpbb_posts_text on phpbb_posts_text.post_id = phpbb_topics.topic_first_post_id
+where phpbb_topics.forum_id = 5
+order by topic_time
+");
 while (($dat = $db->fetchObject($res))) {
     news($dat);
 }
 sb('olderwords');
 $_p->point('news');
-
+}
 /*****************************************************************************************************/
 // latest word
 if (0) {
 	homeHeading("Latest Word");
-	$dat = $db->quickQuery("select * from news order by 'when' desc limit 1");
+	$dat = $db->quickQuery("
+select phpbb_topics.*, phpbb_posts_text.post_text
+from acssrforum.phpbb_topics
+inner join acssrforum.phpbb_posts_text on phpbb_posts_text.post_id = phpbb_topics.topic_first_post_id
+where phpbb_topics.forum_id = 5
+order by topic_time
+limit 1
+	");
 	news($dat);
 	sb('latestword');
 	$_p->point('latestword');
@@ -42,8 +56,14 @@ if (0) {
 
 /*****************************************************************************************************/
 // latest word dev
-$dat = $db->quickQuery("select * from news order by 'when' desc limit 1");
-//echo '<table><tr><td style="vertical-align:top; width: 50%;">';
+$dat = $db->quickQuery("
+select phpbb_topics.*, phpbb_posts_text.post_text
+from acssrforum.phpbb_topics
+inner join acssrforum.phpbb_posts_text on phpbb_posts_text.post_id = phpbb_topics.topic_first_post_id
+where phpbb_topics.forum_id = 5
+order by topic_time
+limit 1
+");
 
 homeHeading("Latest Word");
 news($dat);
