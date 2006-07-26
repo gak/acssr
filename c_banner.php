@@ -4,6 +4,7 @@ class Banner {
 
 	function Banner($id) {
 		global $db;
+		$id += 0;
 		$this->bannerbase = $db->quickquery("select bannerbase.*, user.playerid from bannerbase inner join user on user.id = bannerbase.userid where bannerbase.id = $id");
 		$this->player = new Player($this->bannerbase->playerid+0);
 	}

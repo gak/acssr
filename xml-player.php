@@ -16,6 +16,8 @@ echo '<players>';
 	
 foreach ($idlist as $id) {
 
+	$id = $id + 0;
+	if ($id == 0) continue;
 	$player = new Player($id + 0);
 
 	echo '<player id="'.$player->data->id.'" name="' . htmlspecialchars($player->data->ename) . '">';

@@ -7,11 +7,11 @@ if (!isset($_GET['d']))
 header('Content-type: image/png');
 
 if (isset($_GET['id'])) {
-	$id = $_GET['id'];
+	$id = $_GET['id'] + 0;
 	if ($id == 0) die();
 	$player = new Player($id+0);
 } else if (isset($_GET['userid'])) {
-	$id = $_GET['userid'];
+	$id = $_GET['userid'] + 0;
 	if ($id == 0) die();
 	$u = new User();
 	$u->loadFromID($id);

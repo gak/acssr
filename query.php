@@ -13,6 +13,8 @@ foreach($vars as $var) {
 
 }
 
+$mode += 0;
+
 $g = new generateSQL('ircbot', 'insert');
 $g->field('whenn', time());
 $g->field('version', $v);

@@ -3,7 +3,7 @@ require('abbLogin.php');
 
 // player must be assigned to user
 if (!isset($user->playerid) || !$user->playerid) die();
-$user->playerid = 879591;
+#$user->playerid = 879591;
 
 // Get the server the player is on
 $datPlayer = $db->quickquery("

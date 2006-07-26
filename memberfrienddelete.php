@@ -3,7 +3,8 @@
 require_once("include.php");
 require_once("login.php");
 
-$db->query("delete from friends where playerid = '{$_GET["id"]}' and userid = '{$user->id}'");
+$id = $_GET['id'] + 0;
+$db->query("delete from friends where playerid = '$id' and userid = '{$user->id}'");
  
 Header("Location: .");
 

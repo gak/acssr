@@ -73,6 +73,8 @@ if ($reversenice) {
 
 $where = "";
 
+$online += 0;
+
 if ($online > 0) {
 
 	$dat = $db->quickquery("select * from server where id = $online");

@@ -17,6 +17,7 @@ header("Cache-Control: no-cache");
 @import "style.php";
 </style>
 <link rel="shortcut icon" href="img/icon.png">
+<META name="verify-v1" content="PsPl9Phg6vI8DJcwKyQ2sfhRktikj6iL5jCLyJlxPi8=" />
 <meta name="resource-type" content="document">
 <meta name="description" content="A Counter-Strike:Source player ranking and tracking system that monitors Australian servers">
 <meta name="keywords" content="australian, australia, aussie, internode, gamearena, gamespace, 3fl, egn, ihug, iconz, iinet, sgn, swiftgames, xges, css, counter-strike, counter-strike:source, counter, strike, half, life, source, stats, statistics, rank, ranks, ranking, position, positions, ladder, ladders, point, points, frags, score, player, players, clan, clans, stat, game, player, players, server, servers, graph, graphs">
@@ -158,7 +159,7 @@ google_cpa_choice = "CAAQpeKZzgEaCL1N-uOV--c-KOP143Q";
 <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script></span>
 <span style="font-size: 9px;">
-ACSSR was created by <a href="http://slowchop.com/">Slowchop Studios</a>. Thanks to Jon Skinner and <a href="http://swapoff.org/">Alec Thomas</a> for providing code optimisation and <a href="playerdetails.php?id=539723">ren[FBi]</a> and <a href="http://acssr.slowchop.com/playerdetails.php?id=286585"></a> for being good helper monkeys.<br>
+ACSSR was created by <a href="http://slowchop.com/">Slowchop Studios</a>. Thanks to Jon Skinner and <a href="http://swapoff.org/">Alec Thomas</a> for providing code optimisation and <a href="playerdetails.php?id=539723">ren[FBi]</a> and <a href="http://acssr.slowchop.com/playerdetails.php?id=286585">Wally3K</a> for being good helper monkeys.<br>
 ACSSR is best viewed with a resolution of 1024x768 or higher. ACSSR is contactable by emailing 
 <script>d="slowchop.com";u="acssr";a="@";e=u+a+d;document.write("<a href=\"mailto:"+e+"\">"+e+"</a>");</script>.
 </span>

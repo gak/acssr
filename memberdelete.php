@@ -5,7 +5,8 @@ require('admin.php');
 if (!$isAdmin)
 	die();
 
-$db->query('update player set deleted = 1 where id = '.$_GET['id']);
+$id = $_GET['id'] + 0;
+$db->query('update player set deleted = 1 where id = '.$id);
 
 header('Location: /');
 

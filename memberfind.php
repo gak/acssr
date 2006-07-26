@@ -19,13 +19,15 @@ if (isset($_GET["id"])) {
 
 	if ($mode == 0) {
 	
-		$user->playerid = $_GET["id"];
+		$user->playerid = $_GET["id"] + 0;
 		$user->save();
 		session_write_close();
 		
 	} else {
+
+		$a = $_GET['id'] + 0;
 	
-		$db->query("insert into friends (playerid, userid) values ({$_GET["id"]}, {$user->id})");
+		$db->query("insert into friends (playerid, userid) values ($a, {$user->id})");
 	
 	}
 	
@@ -77,8 +79,11 @@ if ($mode == 0) {
 if ($search != "") {
 
 	echo "<h3>Listing players like \"$ssearch\"</h3>";
+
+	$search = "%$search%";
+	$search = str_to_sql($search);
 	
-	$res = $db->query("select id, ename as name from player WHERE player.ename like '%$search%' ORDER BY score DESC LIMIT 50");
+	$res = $db->query("select id, ename as name from player WHERE player.ename like $search ORDER BY score DESC LIMIT 50");
 
 	echo "<div class=\"articlebody\">";
 

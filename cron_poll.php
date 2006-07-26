@@ -120,7 +120,7 @@ while (($dat = $db->fetchobject($res))) {
 	if (!$good) {
 	
 		$sql = "update player set curserverid = NULL where curserverid = {$server->id}";
-		$db->quickquery($sql);
+		$db->query($sql);
 		sql_error_check($sql);
 		continue;
 	
@@ -361,6 +361,8 @@ while (($dat = $db->fetchobject($res))) {
 			$g->field('iscurrent', 1, 'number');
 			$g->field('points', $player->fragdiff, 'number');
 			$g->field('totaltime', $player->timediff, 'number');
+			if ($mapofficial && $server->collect) $v = 1; else $v = 0;
+			$g->field('official', $v, 'number');
 		} else {
 			$g = new generateSQL('playerserverhistory','update', $datLastMap->id);
 			$g->field('iscurrent', 1, 'number');

@@ -7,7 +7,6 @@
 
 	if (!isset($noob))
 		ob_start("ob_gzhandler");
-		//ob_start();
 
 	require("inc_error.php");
 	set_error_handler("errorhandler");

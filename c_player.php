@@ -33,7 +33,7 @@ class Player {
 
 		} else if ($id != 0) {
 
-			$this->getPlayerFromID($id);
+			$this->getPlayerFromID($id + 0);
 
 		}
 
@@ -49,7 +49,8 @@ class Player {
 
 		global $db;
 		global $sqlsel_gen;
-		
+
+		$id += 0;		
 		$this->data = $db->quickquery("$sqlsel_gen from player where player.id = $id");
 
 		if (!$db->count()) {

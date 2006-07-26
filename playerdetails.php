@@ -4,7 +4,7 @@ require_once("include.php");
 
 
 if (isset($_GET["id"]))
-	$id = $_GET["id"];
+	$id = (int)$_GET["id"];
 
 $shouldcompare = isset($_GET["compare"]);
 if ($shouldcompare)

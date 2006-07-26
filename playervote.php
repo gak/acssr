@@ -3,7 +3,7 @@
 require_once('include.php');
 include('login.php');
 
-$id = $_GET['id'];
+$id = $_GET['id'] + 0;
 
 print_r($_POST);
 

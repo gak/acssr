@@ -21,14 +21,21 @@ if (strlen($_GET['pl']) == 0) {
 }
 
 $idarray = explode(',', $_GET['pl']);
+$newlist = array();
 
 foreach($idarray as $id) {
 
-	if ($id > 0) continue;
+	$id += 0;
+	if ($id > 0) {
+		$newlist[] = $id;
+		continue;
+	}
 	
 	die("Sorry, 'playerList' has invalid entries.");
 
 }
+
+$newlist = implode(',', $newlist);
 
 $res = $db->query("
 
@@ -40,7 +47,7 @@ $res = $db->query("
 
 	LEFT JOIN server ON server.id = player.curserverid
 
-	where player.id in ({$_GET['pl']})
+	where player.id in ($newlist)
 
 	order by rank
 
