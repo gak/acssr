@@ -29,8 +29,6 @@ foreach ($idlist as $id) {
 		if ($field[0] == "Rank") {
 			$moo = $db->quickquery("select rank,day from playerdaily where playerid = $id and rank != 0 order by rank limit 1");
 			
-			$alt=!$alt;
-			$tdalt=($alt)?' class="alt"':'';
 			echo '<bestrank>'.$moo->rank.'</bestrank>';
 		}
 			
