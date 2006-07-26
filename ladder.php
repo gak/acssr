@@ -85,12 +85,12 @@ if ($online > 0) {
 
 else if ($online == -1) {
 
-	$where .= " AND curserverid is null";
+	$where .= " AND (curserverid is null or curserverid = 0)";
 	$on .= " who are currently not on-line";
 
 } else if ($online == -2) {
 
-	$where .= " AND curserverid is not null";
+	$where .= " AND (curserverid is not null and curserverid != 0)";
 	$on .= " who are currently on-line";
 
 }

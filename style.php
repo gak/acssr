@@ -457,3 +457,30 @@ div.code {
 	padding: 5px 5px 5px 5px;
 
 }
+
+.hline1 {
+    height: 7px;
+    display: table-cell;
+    background-color: #0B2;
+}
+
+.hline2  {
+    height: 7px;
+    display: table-cell;
+    background-color: #000;
+}
+
+.ppm1 {
+	border: 1px solid black;
+    height: 7px;
+    display: table-cell;
+	background-color: #0F0;
+}
+
+.ppm2 {
+	border: 1px solid black;
+    height: 7px;
+    display: table-cell;
+	background-color: #0A0;
+}
+

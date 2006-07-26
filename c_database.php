@@ -23,11 +23,10 @@ class Database {
 
 	function Database() {
 
-		$this->db = mysql_pconnect(DB_SERVER, DB_USERNAME, DB_PASSWORD, MYSQL_CLIENT_SSL | MYSQL_CLIENT_COMPRESS) or
-			die ("There are too many users on ACSSR. Please try again later.");
-		
+		$this->db = mysql_pconnect(DB_SERVER, DB_USERNAME, DB_PASSWORD, MYSQL_CLIENT_SSL | MYSQL_CLIENT_COMPRESS);# or
+		#			die ("There are too many users on ACSSR. Please try again later.");
 		mysql_select_db(DB_DATABASE, $this->db);
-
+		
 	}
 
 	/**
@@ -105,10 +104,10 @@ class Database {
 		if (function_exists("utime"))
 			$t = utime();
 
-		$this->result = @mysql_query($query, $this->db);
+		$this->result = mysql_query($query, $this->db);
 		
 		$last_mysql_error = mysql_error();
-		if ($last_mysql_error != '') echo '<!--'.$query.'--><!--'.$last_mysql_error.'-->';
+		#		if ($last_mysql_error != '') echo '<!--'.$query.'--><!--'.$last_mysql_error.'-->';
 
 		if (function_exists("utime"))
 			$q["time"] = (utime() - $t) * 1000;

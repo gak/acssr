@@ -2,9 +2,6 @@
 
 function error($message = "") {
 
-	if (error_reporting() == 0)
-		return;
-		
 	global $nohtml;
 
 	if (ob_get_length()) {
@@ -28,21 +25,18 @@ function error($message = "") {
 	if (!$nohtml) {
 	
 		htmlStart();
+		homeHeading('OOPS!');
+		htmlArticleStart();
+		
 	?>
-		<h2>OOOPS!</h2>
-
-		<p>
-
 		There has been an error on this web site. It might be a little glitch... Refreshing may or may not help!<br><br>
-
 		Every error that happens on ACSSR is recorded so I can tell what went wrong, when and where.<br><br>
-
 		If this error keeps happening please try the page at a later time...
 
-		</p>
-
 	<?
-		htmlStop();
+		htmlArticleStop();
+		htmlStop(0);
+		ob_flush();
 		
 	} else {
 	
@@ -53,7 +47,12 @@ function error($message = "") {
 	$bt = debug_backtrace();
 
 	$outt = "";
-	$outh = "";
+	$outh = "<style>
+	body, td {
+		font-size: 10px;
+	}
+	</style>
+	";
 
 	$outt .= "\nERROR ERROR ERROR\n";
 
@@ -85,6 +84,13 @@ function error($message = "") {
 		$outt .= $t["function"];
 		$outh .= $t["function"];
 		
+		$outt .= "\t";
+		$outh .= "<td>";
+
+		foreach ($t['args'] as $var) {
+			$outh .= $var.'<br>';
+		}
+		
 	}
 
 	$outt .= "\n\n";
@@ -93,7 +99,7 @@ function error($message = "") {
 	if ($nohtml)
 		$outh .= "<pre>";
 	
-	$outh .= $html;
+		#	$outh .= $html;
 
 	if ($nohtml)
 		$outh .= "</pre>";
@@ -104,16 +110,13 @@ function error($message = "") {
 		
 	}
 
-	$headers  = "MIME-Version: 1.0\r\n";
-	$headers .= "Content-type: text/html; charset=utf-8\r\n";
-	$headers .= "From: ACSSR Error <gak@slowchop.com>\r\n";
+	$headers  = "MIME-Version: 1.0\n";
+	$headers .= "Content-type: text/html; charset=utf-8\n";
+	$headers .= "From: ACSSR Error <gak@slowchop.com>\n";
 
 	mail("gak@slowchop.com", $message, $outh, $headers);
 
-	global $_SERVER;
-	global $_GET;
-	if (!$nohtml && ($_SERVER["HTTP_HOST"] == "gak.kicks-ass.org" || isset($_GET["debug"])))
-		echo $outh;
+	echo $outh;
 	
 	die();	
 
@@ -121,17 +124,10 @@ function error($message = "") {
 
 function errorhandler($errno, $errstr, $errfile, $errline) {
 	global $_GET;
-//	if (!isset($_GET['e']))
-//		return;
-//	error("$errfile:$errline $errstr ($errno)");
-//	switch ($errno) {
-//		case 2048:
-//			return;
-//	}
-//	echo "<!-- $errfile:$errline $errstr ($errno)\n<br>";
-//	debug_print_backtrace();
-//	echo "<br> -->";
-//	//die();
+	if ($errno == 2048) return;
+
+	print $errno . ' ' . $errstr . ' ' . $errfile . $errline .'<br>';
+	error("$errfile:$errline $errstr ($errno)");
 
 }
 

@@ -20,6 +20,8 @@ $a = array('search','official','sort');
 foreach ($a as $var) {
 	if (isset($_GET[$var]))
 		$$var = $_GET[$var];
+	else
+		$$var = '';
 }
 
 if (!isset($official)) $official = 1;
@@ -84,11 +86,13 @@ $res = $db->query("
 	height: 7px;
 	display: table-cell;
 	background-color: #0B2;
+	border: 1px solid black;
 }
 .ser2 {
 	height: 7px;
 	display: table-cell;
 	background-color: black;
+	border: 1px solid black;
 }
 </style>
 <?
@@ -143,8 +147,9 @@ while (($dat = $db->fetchobject($res))) {
 		}
 	}
 
-	echo '<span alt="yo" class="ser1" style="width: '.$cps.'px;"></span>';
-	echo '<span class="ser2" style="width: '.$mps.'px;"></span>';
+//	echo '<span alt="yo" class="ser1" style="width: '.$cps.'px;"></span>';
+//	echo '<span class="ser2" style="width: '.$mps.'px;"></span>';
+	echo horiz_line($mps * 2, $cps, $mps, 'ser1', 'ser2');
 }
 
 echo "</table>";

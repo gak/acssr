@@ -108,7 +108,7 @@ $_p->point('latestword');
 
 /*****************************************************************************************************/
 // top 10
-homeHeading("Overall Top 10 Players");
+homeHeading("Top 10 Players");
 $res = $db->query("$sqlserverjoin where player.deleted = 0 ORDER BY score DESC LIMIT 10");
 dumpTable($res, array("servercut"=>true, "reorderrank"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.
 php?order=score&online=0&page=0').'">more</a>'));
@@ -117,7 +117,7 @@ $_p->point('top10');
 
 /*****************************************************************************************************/
 // top 10 (with add.png)
-homeHeading("Overall Top 10 Players");
+homeHeading("Top 10 Players");
 $res = $db->query("$sqlserverjoin where player.deleted = 0 ORDER BY score DESC LIMIT 10");
 dumpTable($res, array('user'=>true, "servercut"=>true, "reorderrank"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.
 php?order=score&online=0&page=0').'">more</a>'));
@@ -126,7 +126,7 @@ $_p->point('top10user');
 
 /*****************************************************************************************************/
 // top 10 online
-homeHeading("Overall Top 10 Players who are Online");
+#homeHeading("Top 10 Players who are Online");
 $t10o = "
 
       SELECT
@@ -159,17 +159,16 @@ $t10o = "
     ORDER BY score DESC LIMIT 10
 
 ";
-$res = $db->query($t10o);
-dumpTable($res, array("servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&onlin
-e=-2&page=0').'">more</a>'));
+#$res = $db->query($t10o);
+#dumpTable($res, array("servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
 sb('top10online');
 $_p->point('top10on');
 
 /*****************************************************************************************************/
 // top 10 online (add.png)
-homeHeading("Overall Top 10 Players who are Online");
-$res = $db->query($t10o);
-dumpTable($res, array('user'=>true, "servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
+#homeHeading("Top 10 Players who are Online");
+#$res = $db->query($t10o);
+#dumpTable($res, array('user'=>true, "servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
 sb('top10onlineuser');
 $_p->point('top10on2');
 
@@ -198,6 +197,49 @@ $datVotes = $db->quickquery('select count(id) as c from playervote');
 $_p->point('q9');
 $datFriends = $db->quickquery('select count(userid) as c from friends');
 $_p->point('q10');
+$datPopularMap = $db->quickquery('
+select map.name, sum(totaltime) as tt
+from playerserverhistory psh, map
+where map.id = psh.mapid
+and map.official = 1
+and psh.starttime > unix_timestamp() - 24*60*60
+group by mapid
+order by tt desc
+limit 1
+');
+$datPpmMap = $db->quickquery('
+select map.name, sum(points) / sum(totaltime) * 60 as tt
+from playerserverhistory psh
+inner join map on map.id = psh.mapid where map.official = 1
+group by mapid
+order by tt desc
+limit 1
+');
+
+$datPpmMapLowest = $db->quickquery('
+select map.name, sum(points) / sum(totaltime) * 60 as tt
+from playerserverhistory psh
+inner join map on map.id = psh.mapid where map.official = 1
+group by mapid
+order by tt
+limit 1
+');
+$datSkilledServer = $db->quickquery('
+select server.id, server.name, avg(ppm) as tt
+from player, server, map
+where
+player.curserverid != 0 and player.curserverid is not null
+and map.id = server.mapid
+and map.official = 1
+and server.id = player.curserverid
+and server.collect = 1
+and server.curplayers > 7
+group by server.id
+order by tt desc
+limit 1
+');
+
+
 $_p->point('quick');
 
 homeHeading("Quick Stats");
@@ -208,6 +250,9 @@ $datStats->hits = number_format($datStats->hits);
 $datStats->searches = number_format($datStats->searches);
 $datFriends->c = number_format($datFriends->c);
 $datVotes->c = number_format($datVotes->c);
+$datPpmMap->tt = number_format($datPpmMap->tt, 2);
+$datPpmMapLowest->tt = number_format($datPpmMapLowest->tt, 2);
+$datSkilledServer->tt = number_format($datSkilledServer->tt, 2);
 
 echo "<div class=\"articlebody\">";
 echo "ACSSR has seen a total of <b>{$datServerTotal->c}</b> players, <b>{$datServerOnline->c}</b> of which are in an Australian server right now. ";
@@ -219,6 +264,10 @@ echo "There are <b>{$datMembers->c}</b> members that have logged in recently and
 echo "The player with the longest accumulated playing time in the last 14 days is <a href=\"playerdetails.php?id={$datMostPlayed->id}\">{$datMostPlayed->ename}</a> who has played for <b>".humanTime($datMostPlayed->totaltime, true)."</b> which is <b>".floor($datMostPlayed->totaltime / 1209600 * 100)."%</b> of the time. ";
 #echo "Yesterdays best player was <a href=\"playerdetails.php?id={$datYesterdaysBest->id}\">{$datYesterdaysBest->ename}</a> who had <b>{$datYesterdaysBest->frags} points</b> in <b>".humanTime($datYesterdaysBest->time, true)."</b>.";
 // echo " Here is a daily <a href=\"friendmap/friendmap.png\">social network graph</a> of all ACSSR friends and voters (400KB).";
+
+echo "The most popular map is <a href=\"servers.php?search=$datPopularMap->name\">{$datPopularMap->name}</a> with <b>".humanTime($datPopularMap->tt, 1)."</b> of accumulated player time in the last 24 hours. ";
+echo "The map with the highest points per minute is <a href=\"servers.php?search={$datPpmMap->name}\">{$datPpmMap->name}</a> with an average of <b>{$datPpmMap->tt} P/M</b>. The lowest is <a href=\"search.php?search={$datPpmMapLowest->name}\">{$datPpmMapLowest->name}</a> with <b>{$datPpmMapLowest->tt} P/M</b>. ";
+echo "Currently the server with the best players is <a href=\"ladder.php?online={$datSkilledServer->id}\">{$datSkilledServer->name}</a> with an average of <b>{$datSkilledServer->tt} P/M</b>. ";
 
 echo "</div>";
 sb('qs');

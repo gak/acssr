@@ -298,6 +298,7 @@ function dumpTable($res, $vars = array()) {
 	}
 
 	unset($totals);
+	$totals = new stdclass();
 	foreach($rank_fields as $field) {
 		$totals->$field[1] = 0;
 	}
@@ -328,6 +329,7 @@ function dumpTable($res, $vars = array()) {
 			$dat->server = humanTime(time() - $dat->lastserverwhen, true) . " ago";
 			
 		}
+
 /*		
 		if ($dat->clanid > 0) {
 		
@@ -356,7 +358,8 @@ function dumpTable($res, $vars = array()) {
 */		
 			$dat->ename = "<a href=\"playerdetails.php?id={$dat->id}\">".htmlspecialchars($dat->ename)."</a>";
 
-//		}			
+//		}
+
 			
 		if ($frienddelete) {
 			$dat->ename .= " <a href=\"memberfrienddelete.php?id={$dat->id}\"><img title=\"Delete from friends\" alt=\"Delete from friends\" src=\"img/delete.png\"></a>";
@@ -367,7 +370,7 @@ function dumpTable($res, $vars = array()) {
 		}
 
 		if ($isAdmin) {
-				$dat->ename .= " <a onclick=\"return confirm('Delete {$dat->name}?');\" href=\"memberdelete.php?id={$dat->id}\" style=\"color:black\">x</a>";
+				$dat->ename .= " <a onclick=\"return confirm('Delete {$pname}?');\" href=\"memberdelete.php?id={$dat->id}\" style=\"color:black\">x</a>";
 		}
 			
 		if ($reorderrank) {
@@ -423,6 +426,7 @@ function dumpTable($res, $vars = array()) {
 		echo "<tr>";
  
 		unset($values);
+		$values = new stdclass();
 		$ratio = $totals->totalfrags / $totals->seconds;
 		$values->multiplier = 1 - FORMULA_OFFSETT / ($totals->seconds + FORMULA_OFFSETB);
 		$values->score = number_format($ratio * $values->multiplier * FORMULA_SCOREMULTIPLIER, 0, "", "");
@@ -433,41 +437,44 @@ function dumpTable($res, $vars = array()) {
 		if ($compare)
 			$nameextra .= " <a href=\"playerdetails.php?compare=$id\">compare</a>";
 		
-		if ($morelink)
-			$nameextra .= " $morelink";
+		if ($morelink) {
+			for ($yay=0;$yay < 6;$yay++)
+			echo '<td class="total">';
+			echo '<td class="total" align="right">' . $morelink;
+		} else {
 			
-		if ($nameextra != "") {
-		
-			$nameextra = trim($nameextra);
-		
-			$nameextra = " <small>($nameextra)</small>";
-			$values->ename .= $nameextra;
-		
-		}
-
-		$values->multiplier = number_format($values->multiplier, 2);
-		$values->ppm = number_format($totals->totalfrags / $totals->minutes, 2);
-		$values->seconds = humanTime($totals->seconds);
-		$values->totalfrags = $totals->totalfrags;
-	
-		foreach($rank_fields as $field) {
-		
-			if (!$field[RANK_SHOW])
-				continue;
+			if ($nameextra != "") {
 			
-			if ($field[1] == "server" && !$servercol)
-				continue;
-		
-			echo "<td class=\"total\">";
-
-			if (isset($values->$field[1])) {
+				$nameextra = trim($nameextra);
 			
-					echo $values->$field[1];
-
+				$nameextra = " <small>($nameextra)</small>";
+				$values->ename .= $nameextra;
+			
 			}
-			
-		}
 
+			$values->multiplier = number_format($values->multiplier, 2);
+			$values->ppm = number_format($totals->totalfrags / $totals->minutes, 2);
+			$values->seconds = humanTime($totals->seconds);
+			$values->totalfrags = $totals->totalfrags;
+		
+			foreach($rank_fields as $field) {
+			
+				if (!$field[RANK_SHOW])
+					continue;
+				
+				if ($field[1] == "server" && !$servercol)
+					continue;
+			
+				echo "<td class=\"total\">";
+
+				if (isset($values->$field[1])) {
+				
+						echo $values->$field[1];
+
+				}
+				
+			}
+		}
 	}
 
 	if ($tableend)

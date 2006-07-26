@@ -14,6 +14,8 @@
 //	require('inc_newerror.php');
 //	set_error_handler("acssrerrorhandler");
 
+	date_default_timezone_set("Australia/Sydney");
+
 	require("inc_func.php");
 	require("inc_html.php");
 	require("inc_session.php");

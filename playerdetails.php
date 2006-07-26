@@ -140,6 +140,7 @@ if ($shouldcompare) {
 		echo "</table>";
 
 		$userid = $db->quickquery("select id from user where playerid = $id");
+		if ($db->count())
 		if (file_exists("pp/".$userid->id.".png")) {
 			homeHeading('Banner');
 			echo "<table><tr><td class=\"alt\" style=\"text-align: center; padding: 15px 15px 15px 15px;\"><a href=\"playerdetails.php?id=$id\"><img src=\"http://acssr.slowchop.com/pp/{$userid->id}.png\"></a></table>";
@@ -379,9 +380,40 @@ if ($historymode == 0) {
 
 }
 
-homeHeading('Map History');
-$db->query("select * from playerserverhistory where playerid = $id");
-print_r($db->fetchAllArray());
+homeHeading('Recent Server History');
+$db->query("
+	select psh.starttime, psh.official, psh.points, psh.totaltime, server.name as servername, map.name as mapname, server.id as serverid
+	from playerserverhistory psh
+	left join server on server.address = psh.serveraddress
+	inner join map on map.id = psh.mapid
+	where psh.playerid = $id
+	and totaltime != 0
+	order by psh.starttime desc
+	limit 10
+");
+echo '<table><tr><th>When<th>Server<th>Map<th>Official<th>Points<th>Time<th>P/M<th>';
+$alt = 1;
+$lastServerID = -1;
+while ($dat = $db->fetchObject()) {
+	echo '<tr>';
+	$alt  = !$alt;
+	$td = ($alt)?'<td>':'<td class="alt">';
+	echo $td . myshortdate($dat->starttime);
+	if ($lastServerID == $dat->serverid)
+		echo $td . '...';
+	else
+		echo $td . '<a href="ladder.php?online='. $dat->serverid . '">' . $dat->servername . '</a>';
+	$lastServerID = $dat->serverid;
+	echo $td . $dat->mapname;
+	echo $td . $dat->official;
+	echo $td . $dat->points;
+	echo $td . humanTime($dat->totaltime);
+	echo $td . number_format($dat->points / $dat->totaltime * 60, 1);
+	$p = 'ppm1';
+	if (!$dat->official) $p = 'ppm2';
+	echo $td . horiz_line($dat->points / $dat->totaltime * 2000, 1, 1, $p);
+}
+echo '</table>';
 
 homeHeading($vdays . ' Day History Graphs ' . $change);
 
@@ -597,5 +629,10 @@ function getPlayerData($id, $days) {
 	
 }
 
+function makeActivityGraph($id) {
+
+	
+
+}
 
 ?>

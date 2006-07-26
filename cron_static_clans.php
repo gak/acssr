@@ -1,4 +1,5 @@
 <?
+$nohtml = 1;
 include 'include.php';
 $clans = array();
 $res = $db->query('select clantag, clanpos from user where clantag is not null and clanpos is not null group by clantag, clanpos');
@@ -19,6 +20,7 @@ while ($dat = $db->fetchObject($res)) {
 		from player
 		where player.ename like $s
 		and lastserverwhen > unix_timestamp() - 60*60*24*14
+		and player.score > 0
 	");
 
 	if ($dCount->c < $minclanplayers)
@@ -31,6 +33,7 @@ while ($dat = $db->fetchObject($res)) {
 			from player
 			where player.ename like $s
 			and lastserverwhen > unix_timestamp() - 60*60*24*14
+			and player.score > 0
 			order by score desc
 			limit $minclanplayers 
 		) as poo
@@ -55,9 +58,7 @@ function m($a, $b) {
 	return 0;
 }
 usort($clans, 'm'); 
-
-ob_clean();
-
+ob_start();
 ?>
 <table><tr><th>#<th>Clan<th>Score<th>Players<th>Points<th>Time<th>Best Player
 <?
@@ -84,10 +85,40 @@ foreach ($clans as $c) {
 }	
 echo '</table>';
 
-$s = ob_get_contents();
-ob_clean();
+$s = ob_get_clean();
 $f = fopen('static/clans.htm', 'w');
 fwrite($f, $s);
-fclose($fp);
+fclose($f);
 
+homeHeading('Top 10 Clans');
 ?>
+<table><tr><th>#<th>Clan<th>Score<th>Players<th>Points<th>Best Player
+<?
+$r = 0;
+foreach ($clans as $c) {
+	$r++;
+	if ($r == 11) break;
+	$td = ($r % 2)?'<td>':'<td class="alt">';
+	print '<tr>';
+	print $td;
+	print $r;
+	print $td;
+	$w = ($c[0]->clanpos == 0)?'start':'end';
+	print "<a href=\"search.php?{$w}with=1&search=" . urlencode($c[0]->clantag) . "\">".htmlspecialchars($c[0]->clantag)."</a>";
+	print $td;
+	print $c[2]->clanscore;
+	print $td;
+	print $c[1]->c;
+	print $td;
+	print $c[1]->totalfrags;
+	print $td;
+	print "<a href=\"playerdetails.php?id={$c[3]->id}\">{$c[3]->ename}</a>";
+}
+print '<tr><td class="total"><td class="total"><td class="total"><td class="total"><td class="total"><td class="total" align="right"><a href="clans.php">more</a>';
+echo '</table>';
+
+$s = ob_get_clean();
+$f = fopen('static/clans_front.htm', 'w');
+fwrite($f, $s);
+fclose($f);
+

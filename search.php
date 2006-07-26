@@ -72,7 +72,7 @@ if ($search != "") {
 			LIMIT 50
 		");
 		dumpTable($res, false);
-		$db->quickquery("update stats set searches = searches + 1");
+		$db->query("update stats set searches = searches + 1");
 	} else {
 		echo '<div class="articlebody">';
 		echo $err;

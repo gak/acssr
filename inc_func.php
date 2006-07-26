@@ -199,9 +199,25 @@ function mylongdate($ts) {
 
 }
 
+function istoday($ts) {
+	return (today() == mktime(0, 0, 0, date("m",$ts), date("d",$ts), date("Y",$ts)));
+}
+
+function isyesterday($ts) {
+	return (getday(-1) == mktime(0, 0, 0, date("m",$ts), date("d",$ts), date("Y",$ts)));
+}
+
 function myshortdate($ts) {
 
-	return date("d/m/Y h:i:sA", $ts);
+	if (istoday($ts)) {
+		$day = 'Today';
+	} else if (isyesterday($ts)) {
+		$day = 'Yesterday';
+	} else {
+		$day = date("d/m/Y", $ts);
+	}
+	
+	return $day . date(" g:i:s a", $ts);
 
 }
 
@@ -311,6 +327,19 @@ function str_to_sql($s) {
 	}
 	$o .= ')';
 	return $o;
+}
+
+function horiz_line($width, $val, $max, $c1="hline1", $c2="hline2") {
+
+	if ($max == 0) return;
+	$rest = $max - $val;
+	$valwidth = $val / $max * $width;
+	$restwidth = $rest / $max * $width;
+    $o = '<span class="'.$c1.'" style="width: '.$valwidth.'px;"></span>';
+	if ($restwidth > 0)
+	    $o .= '<span class="'.$c2.'" style="width: '.$restwidth.'px;"></span>';
+	return $o;
+
 }
 
 ?>
