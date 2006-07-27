@@ -40,7 +40,7 @@ $_p->point('news');
 /*****************************************************************************************************/
 // latest word
 if (0) {
-	homeHeading("Latest Word");
+	homeHeading("Latest News");
 	$dat = $db->quickQuery("
 select phpbb_topics.*, phpbb_posts_text.post_text
 from acssrforum.phpbb_topics

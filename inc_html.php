@@ -617,7 +617,8 @@ function news($dat) {
 	if ($comments == 1) $plural = ''; else $plural = 's';
 	$body = str_replace("\n", "<br>", $body);
     echo $body;
-	echo '<div class="articlesub"><br><a href="/forum/viewtopic.php?t='.$dat->topic_id.'">'.$comments.' comment'.$plural.'</a></div>';
+	echo '<div class="articlesub"><br><a href="/forum/viewtopic.php?t='.$dat->topic_id.'">'.$comments.' comment'.$plural.'</a> | ';
+	echo '<a href="/forum/viewforum.php?f=5">older news</a></div>';
 	#	echo '<div class="articlesub"><br><a href="/forum/posting.php?mode=reply&t=' . $dat->topic_id . '">post comment</a></div>';
     echo "</div>";
 }
