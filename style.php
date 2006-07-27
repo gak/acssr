@@ -25,6 +25,18 @@ form {
 
 }
 
+ul {
+	margin-left: 10px;
+	padding-left: 0px;
+}
+
+li {
+
+	list-style: square inside;
+	text-indent: 0px;
+
+}
+
 body.tracker {
 
 	background-image: none;
