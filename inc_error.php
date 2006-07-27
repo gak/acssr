@@ -1,28 +1,31 @@
 <?
 
-function error($message = "") {
+#function error($message = "") {
+function errorhandler($errno, $errstr, $errfile, $errline) {
 
 	global $nohtml;
 
-	if (ob_get_length()) {
+	if (error_reporting() == 0) return;	
+	if ($errno == 2048) return;
 
-		$html = ob_get_contents();
-		ob_end_clean();
-		ob_start();
-		
+	$message = "$errfile:$errline $errstr ($errno)";
+	
+	if (ob_get_length()) {
+		$html = ob_get_clean();
+
 	} else {
 	
 		$html = "";
 	
 	}
-	
+
 	if (!isset($nohtml)) {
 	
 		$nohtml = 0;
 		
 	}
 	
-	if (!$nohtml) {
+	if (1 || !$nohtml) {
 	
 		htmlStart();
 		homeHeading('OOPS!');
@@ -36,7 +39,6 @@ function error($message = "") {
 	<?
 		htmlArticleStop();
 		htmlStop(0);
-		ob_flush();
 		
 	} else {
 	
@@ -105,9 +107,7 @@ function error($message = "") {
 		$outh .= "</pre>";
 
 	if ($nohtml) {
-
-		echo $outt;
-		
+		#		echo $outt;
 	}
 
 	$headers  = "MIME-Version: 1.0\n";
@@ -116,19 +116,16 @@ function error($message = "") {
 
 	mail("gak@slowchop.com", $message, $outh, $headers);
 
-	echo $outh;
+	#	echo $outh;
 	
 	die();	
 
 }
 
-function errorhandler($errno, $errstr, $errfile, $errline) {
+function _errorhandler($errno, $errstr, $errfile, $errline) {
 	global $_GET;
 	if ($errno == 2048) return;
-
-	print $errno . ' ' . $errstr . ' ' . $errfile . $errline .'<br>';
 	error("$errfile:$errline $errstr ($errno)");
-
 }
 
 ?>

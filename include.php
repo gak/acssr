@@ -10,6 +10,7 @@
 
 	require("inc_error.php");
 	set_error_handler("errorhandler");
+
 //	require('inc_newerror.php');
 //	set_error_handler("acssrerrorhandler");
 

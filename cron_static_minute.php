@@ -146,7 +146,7 @@ $_p->point('top10user');
 
 /*****************************************************************************************************/
 // top 10 online
-#homeHeading("Top 10 Players who are Online");
+homeHeading("Top 10 Players who are Online");
 $t10o = "
 
       SELECT
@@ -179,16 +179,16 @@ $t10o = "
     ORDER BY score DESC LIMIT 10
 
 ";
-#$res = $db->query($t10o);
-#dumpTable($res, array("servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
+$res = $db->query($t10o);
+dumpTable($res, array("servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
 sb('top10online');
 $_p->point('top10on');
 
 /*****************************************************************************************************/
 // top 10 online (add.png)
-#homeHeading("Top 10 Players who are Online");
-#$res = $db->query($t10o);
-#dumpTable($res, array('user'=>true, "servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
+homeHeading("Top 10 Players who are Online");
+$res = $db->query($t10o);
+dumpTable($res, array('user'=>true, "servercut"=>true, "small"=>true, "morelink"=>'<a href="'.htmlspecialchars('ladder.php?order=score&online=-2&page=0').'">more</a>'));
 sb('top10onlineuser');
 $_p->point('top10on2');
 

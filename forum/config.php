@@ -7,7 +7,7 @@
 $dbms = 'mysql4';
 
 $dbhost = 'localhost';
-$dbhost = 'norris.gakman.com';
+$dbhost = '127.0.0.1:3307';
 $dbname = 'acssrforum';
 $dbuser = 'acssr';
 $dbpasswd = 'homeracssr';

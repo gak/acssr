@@ -207,11 +207,11 @@ if (isset($user)) {
 if ($user) {
 	require('static/top10user.htm');
 	require('static/clans_front.htm');
-	#	require('static/top10onlineuser.htm');
+	require('static/top10onlineuser.htm');
 } else {
 	require('static/top10.htm');
 	require('static/clans_front.htm');
-	#	require('static/top10online.htm');
+	require('static/top10online.htm');
 }
 	
 echo "</table>";

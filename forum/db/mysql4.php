@@ -45,11 +45,7 @@ class sql_db
 		$this->server = $sqlserver;
 		$this->dbname = $database;
 
-		$this->db_connect_id = ($this->persistency) ? mysql_pconnect($this->server, $this->user, $this->password, false, MYSQL_CLIENT_SSL) : mysql_connect($this->server, $this->user, $this->password, false, MYSQL_CLIENT_SSL);
-
-		//$this->db_connect_id = mysql_connect('norris.gakman.com', 'acssr', 'homeracssr', false, MYSQL_CLIENT_SSL);
-
-		//echo mysql_error();
+		$this->db_connect_id = ($this->persistency) ? mysql_pconnect($this->server, $this->user, $this->password, false) : mysql_connect($this->server, $this->user, $this->password, false);
 
 		if( $this->db_connect_id )
 		{
