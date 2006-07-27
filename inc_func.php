@@ -96,7 +96,7 @@ function getMapID($name) {
 	
 	}
 
-	$dat = $db->quickquery("insert into map (name) values ('$name')");
+	$dat = $db->query("insert into map (name) values ('$name')");
 	$id = mysql_insert_id();
 	return $id;
 	
