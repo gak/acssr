@@ -47,7 +47,7 @@ if ($db->count()) {
 
 } else {
 
-	$db->quickquery("insert into bytes (hour, bytes_in, bytes_out) values (".gethour().", {$bytes[1]}, {$bytes[2]})");
+	$db->query("insert into bytes (hour, bytes_in, bytes_out) values (".gethour().", {$bytes[1]}, {$bytes[2]})");
 }
 $_p->point("byte stats", false);
 

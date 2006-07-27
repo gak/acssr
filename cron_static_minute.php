@@ -286,7 +286,7 @@ echo "The player with the longest accumulated playing time in the last 14 days i
 // echo " Here is a daily <a href=\"friendmap/friendmap.png\">social network graph</a> of all ACSSR friends and voters (400KB).";
 
 echo "The most popular map is <a href=\"servers.php?search=$datPopularMap->name\">{$datPopularMap->name}</a> with <b>".humanTime($datPopularMap->tt, 1)."</b> of accumulated player time in the last 24 hours. ";
-echo "The map with the highest points per minute is <a href=\"servers.php?search={$datPpmMap->name}\">{$datPpmMap->name}</a> with an average of <b>{$datPpmMap->tt} P/M</b>. The lowest is <a href=\"search.php?search={$datPpmMapLowest->name}\">{$datPpmMapLowest->name}</a> with <b>{$datPpmMapLowest->tt} P/M</b>. ";
+echo "The map with the highest points per minute is <a href=\"servers.php?search={$datPpmMap->name}\">{$datPpmMap->name}</a> with an average of <b>{$datPpmMap->tt} P/M</b>. The lowest is <a href=\"servers.php?search={$datPpmMapLowest->name}\">{$datPpmMapLowest->name}</a> with <b>{$datPpmMapLowest->tt} P/M</b>. ";
 echo "Currently the server with the best players is <a href=\"ladder.php?online={$datSkilledServer->id}\">{$datSkilledServer->name}</a> with an average of <b>{$datSkilledServer->tt} P/M</b>. ";
 
 echo "</div>";

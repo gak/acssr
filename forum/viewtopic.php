@@ -1059,7 +1059,7 @@ for($i = 0; $i < $total_posts; $i++)
 			$user_sig = preg_replace('#(<)([\/]?.*?)(>)#is', "&lt;\\2&gt;", $user_sig);
 		}
 		*/
-		if ( $postrow[$i]['enable_html'] )
+		if ( $postrow[$i]['enable_html'] && 0 )
 		{
 			$message = preg_replace('#(<)([\/]?.*?)(>)#is', "&lt;\\2&gt;", $message);
 		}

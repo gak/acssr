@@ -57,7 +57,8 @@ foreach ($idlist as $id) {
 
 	echo '<history days="'.$days.'">';
 	for ($i = $days-1; $i >= 0; $i--) {
-
+		if (!isset($data->timestamp[$i]))
+			$data->timestamp[$i] = 0;
 		echo '<day ago="'.($days-$i-1).'" date="'.date('r',$data->timestamp[$i]).'">';
 		$vars = array('rank', 'score', 'time', 'frags', 'ppm');
 		foreach ($vars as $var) {

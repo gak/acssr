@@ -127,7 +127,10 @@ if (isset($_GET["debug"])) {
 }
 
 global $_SERVER;
-$ref = $_SERVER["REQUEST_URI"];
+if (isset($_SERVER) and isset($_SERVER["REQUEST_URI"]))
+	$ref = $_SERVER["REQUEST_URI"];
+else
+	$ref = '';
 
 ?>
 
@@ -612,9 +615,10 @@ function news($dat) {
 
     echo "</div>";
 	if ($comments == 1) $plural = ''; else $plural = 's';
+	$body = str_replace("\n", "<br>", $body);
     echo $body;
-	#	echo '<a href="/forum/viewtopic.php?t='.$dat->topic_id.'">'.$comments.' comment'.$plural.'</a>.</div>';
-	echo '<div class="articlesub"><br><a href="/forum/posting.php?mode=reply&t=' . $dat->topic_id . '">post comment</a></div>';
+	echo '<div class="articlesub"><br><a href="/forum/viewtopic.php?t='.$dat->topic_id.'">'.$comments.' comment'.$plural.'</a></div>';
+	#	echo '<div class="articlesub"><br><a href="/forum/posting.php?mode=reply&t=' . $dat->topic_id . '">post comment</a></div>';
     echo "</div>";
 }
 

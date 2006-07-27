@@ -115,7 +115,8 @@ if ($shouldcompare) {
 				
 				$alt=!$alt;
 				$tdalt=($alt)?' class="alt"':'';
-				echo "<tr><td$tdalt>Best Rank<td$tdalt>".$moo->rank;
+				if (isset($moo->rank))
+					echo "<tr><td$tdalt>Best Rank<td$tdalt>".$moo->rank;
 			}
 				
 		}

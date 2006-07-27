@@ -38,7 +38,7 @@ foreach ($hourstats as $stat) {
 		else
 			$value = $d[0];
 	}
-
+	$value += 0;
 	$sql = 'insert into statshourly (hour, stat, value) values ('.gethour().', '.$v.', '.$value.')';
 	$db->query($sql);
 	
