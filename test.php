@@ -2,12 +2,11 @@
 
 include 'include.php';
 
-#error('test');
-#die();
-
-htmlStart();
 $a = 0;
-$a /= 0;
-htmlStop();
+try {
+	$a /= 0;
+} catch (Exception $e) {
+	print $e;
+}
 
 ?>

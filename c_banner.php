@@ -10,9 +10,12 @@ class Banner {
 			$this->player = null;
 		else
 			$this->player = new Player($this->bannerbase->playerid+0);
+
 	}
 
 	function done() {
+		if (!isset($this->image))
+			return;
 		imagedestroy($this->image);
 	}
 
@@ -58,6 +61,8 @@ class Banner {
 	}
 
 	function write($f = "") {
+		if (!isset($this->image))
+			return;
 		if ($f == "") $f = 'b/'.$this->bannerbase->id.'.png';
 		imagepng($this->image, $f);
 	}
@@ -119,12 +124,24 @@ class Banner {
 			case 'T': $text = humanTime($p->data->totaltime + 0); break;
 			case 'L':
 				$lastServer = $db->quickquery("select * from server where id = " . $p->data->lastserverid);
-				$text = shortServerName($lastServer->name);
+				if ($db->count())
+					$text = shortServerName($lastServer->name);
+				else
+					$text = 'No server';
 				break;
 			case 'A': $text = humanTime(time() - $p->data->lastserverwhen); break;
 			// today values
-			case 'f': $text = $p->today->frags + 0; break;
-			case 't': $text = humanTime($p->today->time + 0); break;
+			case 'f': 
+				if (isset($p->today) and isset($p->today->frags))
+					$text = $p->today->frags + 0;
+				else
+					$text = '0';
+				break;
+			case 't':
+				if (isset($p->today) and isset($p->today->time))
+					$text = humanTime($p->today->time + 0);
+				else
+					$text = '0s';
 		}
 		return $text;
 	}
