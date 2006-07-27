@@ -23,7 +23,7 @@ class Database {
 
 	function Database() {
 
-		$this->db = mysql_pconnect(DB_SERVER, DB_USERNAME, DB_PASSWORD, MYSQL_CLIENT_SSL | MYSQL_CLIENT_COMPRESS);# or
+		$this->db = mysql_pconnect(DB_SERVER, DB_USERNAME, DB_PASSWORD);# or
 		#			die ("There are too many users on ACSSR. Please try again later.");
 		mysql_select_db(DB_DATABASE, $this->db);
 		

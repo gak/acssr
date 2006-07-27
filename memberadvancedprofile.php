@@ -246,7 +246,11 @@ The following lists all the text on your banner. You can specify the text, X and
 Control Codes (case sensitive): <b>^1</b> Use Highlight Colour, <b>^0</b> Use Normal Colour, <b>^N</b> Your player name, <b>^R</b> Current Rank, <b>^S</b> Current Score, <b>^P</b> Points per Minute, <b>^F</b> Total Frags, <b>^T</b> Total Time Played, <b>^L</b> Last Server, <b>^A</b> Time since last played, <b>^f</b> Frags today, <b>^t</b> Time played today<br><br>
 
 <table><tr><th>Text<th>Position<th>Font Size<th>Colour<th>Highlight Colour<th>Alignment<th>Delete
-<? function textRow($id, $dat) { ?>
+<? function textRow($id, $dat) {
+	foreach (array('text','x','y','fontsize','coloura','colourb','align') as $attr) {
+		if (!isset($dat->$attr)) $dat->$attr = '';
+	}
+?>
 	<tr>
 	<td><input type="text" name="text<?=$id?>" size="50" value="<?=$dat->text?>">
 	<td><input type="text" size="3" name="x<?=$id?>" value="<?=$dat->x?>"> x <input type="text" size="3" name="y<?=$id?>" value="<?=$dat->y?>">
