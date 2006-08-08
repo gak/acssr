@@ -70,12 +70,21 @@ if (!$user->playerid) {
 			where bannertext.bannerid = $template
 			order by id
 		");
-		echo mysql_error();
 		
 	} else {
 
-		$w = $_POST['width'];
-		$h = $_POST['height'];
+		if (isset($_POST)) {
+			if (isset($_POST['width']))
+				$w = $_POST['width'];
+			else
+				$w = 0;
+			if (isset($_POST['height']))
+				$h = $_POST['height'];
+			else
+				$h = 0;
+		} else {
+			$w = $h = 0;
+		}
 
 		if ($w+0 == 0 || $h+0 == 0) {
 			$w = 468;

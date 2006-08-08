@@ -27,10 +27,12 @@ if (isset($_POST["ips"])) {
 	}
 	
 }
-
+htmlStart();
 ?>
 
 <form method="post" action="serversadd.php">
 <textarea name="ips" rows=20 cols=20></textarea>
 <input type="submit">
 </form>
+
+<?htmlStop();?>

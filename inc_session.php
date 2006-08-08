@@ -42,7 +42,7 @@ function sWrite($id, $data) {
 	
 	$db->query("select * from session where id = '$id'");
 	if (isset($_SERVER) and isset($_SERVER['REQUEST_URI']))
-		$page = $_SERVER["REQUEST_URI"];
+		$page = addSlashes($_SERVER["REQUEST_URI"]);
 	else
 		$page = '';
 

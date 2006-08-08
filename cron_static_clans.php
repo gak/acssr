@@ -23,6 +23,8 @@ while ($dat = $db->fetchObject($res)) {
 		and player.score > 0
 	");
 
+//	print $dat->clantag . ' '. $dCount->c . "\n";
+
 	if ($dCount->c < $minclanplayers)
 		continue;
 

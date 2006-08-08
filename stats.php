@@ -4,6 +4,9 @@ require_once('conf_stats.php');
 
 htmlStart();
 homeHeading("Stats of ACSSR");
+echo "FAG!";
+htmlStop();
+die();
 
 $datHour = $db->quickquery("select max(hour) as val from statshourly");
 $hour = $datHour->val;

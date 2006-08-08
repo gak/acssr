@@ -37,22 +37,6 @@ while (($dat = $db->fetchObject($res))) {
 sb('olderwords');
 $_p->point('news');
 }
-/*****************************************************************************************************/
-// latest word
-if (0) {
-	homeHeading("Latest News");
-	$dat = $db->quickQuery("
-select phpbb_topics.*, phpbb_posts_text.post_text
-from acssrforum.phpbb_topics
-inner join acssrforum.phpbb_posts_text on phpbb_posts_text.post_id = phpbb_topics.topic_first_post_id
-where phpbb_topics.forum_id = 5
-order by topic_time
-limit 1
-	");
-	news($dat);
-	sb('latestword');
-	$_p->point('latestword');
-}
 
 /*****************************************************************************************************/
 // latest word dev
@@ -61,7 +45,7 @@ select phpbb_topics.*, phpbb_posts_text.post_text
 from acssrforum.phpbb_topics
 inner join acssrforum.phpbb_posts_text on phpbb_posts_text.post_id = phpbb_topics.topic_first_post_id
 where phpbb_topics.forum_id = 5
-order by topic_time
+order by topic_time desc
 limit 1
 ");
 

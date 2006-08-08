@@ -164,13 +164,13 @@ if (!isset($_SESSION) || !isset($_SESSION["user"])) {
 ?>
 If you are in a clan, specify your clan tag here to be listed in the clans section.<br>
 <form action="setclan.php" method="post">
-Clan tag: <input type="text" name="clantag" value="<?=$datTag->clantag?>" size="5">
+Clan tag: <input size="20" type="text" name="clantag" value="<?=$datTag->clantag?>">
 Tag alignment: <select name="clanpos">
 <option value="0"<?if ($datTag->clanpos==0)echo " SELECTED";?>>Left
 <option value="1"<?if ($datTag->clanpos==1)echo " SELECTED";?>>Right
 </select>
 <input type="submit" value="update">
-</form><small>Set to nothing if you want to remove the tag. Clan tags must be at least two characters and have a character that isn't a letter.</small><br><br>
+</form><small>Set to nothing if you want to remove the tag. Clan tags must be between 2 and 20 characters long and have a character that isn't a letter.</small><br><br>
 
 <?
 	echo "Feel free to <a href=\"logout.php\">log out</a>. ACSSR should remember you for a week otherwise.";
@@ -206,12 +206,12 @@ if (isset($user)) {
 
 if ($user) {
 	require('static/top10user.htm');
-	require('static/clans_front.htm');
 	require('static/top10onlineuser.htm');
+	require('static/clans_front.htm');
 } else {
 	require('static/top10.htm');
-	require('static/clans_front.htm');
 	require('static/top10online.htm');
+	require('static/clans_front.htm');
 }
 	
 echo "</table>";
