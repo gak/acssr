@@ -406,7 +406,7 @@ while ($dat = $db->fetchObject()) {
 		echo $td . '<a href="ladder.php?online='. $dat->serverid . '">' . $dat->servername . '</a>';
 	$lastServerID = $dat->serverid;
 	echo $td . $dat->mapname;
-	echo $td . $dat->official;
+	echo $td . (($dat->official) ? 'Yes':'No');
 	echo $td . $dat->points;
 	echo $td . humanTime($dat->totaltime);
 	echo $td . number_format($dat->points / $dat->totaltime * 60, 1);

@@ -11,9 +11,9 @@ htmlStart();
 $ses_life = strtotime("-7 days"); 
 $db->query("
 select playervote.playerid, player.score, count(userid) as c, sum(playervote.alignment * playervotecategory.alignment) as alignment, player.ename 
-from playervote, playervotecategory 
-left join player on player.id = playervote.playerid
-where playervote.playervotecategoryid = playervotecategory.id
+from playervote, playervotecategory , player
+where player.id = playervote.playerid
+and playervote.playervotecategoryid = playervotecategory.id
 group by playervote.playerid
 order by alignment
 ");

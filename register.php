@@ -21,7 +21,10 @@ if (isset($_POST["username"])) {
 	$html = 0;
 	
 	if ($enable_cap)
-		$cap = $_SESSION['cap'];
+		if (!isset($_SESSION) or !isset($_SESSION['cap']))
+			$error = 'You must have cookies enabled to register.';
+		else
+			$cap = $_SESSION['cap'];
 	if ($enable_cap && $cap->word != strtolower($_POST['cap'])) {
 		$error = "Image Verification failed. Please try it again.";
 	} else {
@@ -127,7 +130,10 @@ I will not give your e-mail address to anyone.
 
 else if ($error == "") {
 
+	homeHeading('Registration Complete');
+	htmlArticleStart();
 	echo "Thank you for registering. Please check your e-mail to receive your activation link.";
+	htmlArticleStop();
 
 }
 

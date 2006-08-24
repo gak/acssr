@@ -49,7 +49,10 @@ if (!$user->playerid) {
 	
 } else if (isset($_GET['new'])) {
 
-	$template = $_POST['template'] + 0;
+	if (isset($_POST['template']))
+		$template = $_POST['template'] + 0;
+	else
+		$template = 0;
 	if ($template) {
 
 		$db->query("
@@ -59,8 +62,6 @@ if (!$user->playerid) {
 			where bannerbase.id = $template
 		");
 
-		echo mysql_error();
-		echo "@<br>";
 		$id = mysql_insert_id();
 
 		$db->query("
