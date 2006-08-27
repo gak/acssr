@@ -17,10 +17,8 @@ header("Cache-Control: no-cache");
 @import "style.php";
 </style>
 <link rel="shortcut icon" href="img/icon.png">
-<META name="verify-v1" content="PsPl9Phg6vI8DJcwKyQ2sfhRktikj6iL5jCLyJlxPi8=" />
 <meta name="resource-type" content="document">
 <meta name="description" content="A Counter-Strike:Source player ranking and tracking system that monitors Australian servers">
-<meta name="keywords" content="australian, australia, aussie, internode, gamearena, gamespace, 3fl, egn, ihug, iconz, iinet, sgn, swiftgames, xges, css, counter-strike, counter-strike:source, counter, strike, half, life, source, stats, statistics, rank, ranks, ranking, position, positions, ladder, ladders, point, points, frags, score, player, players, clan, clans, stat, game, player, players, server, servers, graph, graphs">
 </head>
 <body><div class="top"><table class="topoutline"><tr><td class="topoutlinebody">
 
@@ -186,6 +184,12 @@ if ($dbok)
 
 }
 
+function serverLink($name, $address) {
+
+	return '<a href="steam://connect/'.$address.'"><img src="img/join.png" title="Join '.$name.' ('.$address.')"></a>';
+
+}
+
 // function dumpTable($res, $total = true, $header = true, $tablestart = true, $tableend = true) {
 function dumpTable($res, $vars = array()) {
 
@@ -319,16 +323,18 @@ function dumpTable($res, $vars = array()) {
 
 		if (!$dat->score)
 			$dat->rank = "-";
+
+		$origservername = $dat->servername;
 		
 		if ($servercut) {
 
 			$dat->servername = shortServerName($dat->servername);
-			$dat->servername = substr($dat->servername, 0, 27);
+			$dat->servername = substr($dat->servername, 0, 25);
 
 		}
 
 		if ($dat->curserverid > 0)
-			$dat->server = "<a href=\"ladder.php?online={$dat->curserverid}\">$dat->servername</a>";
+			$dat->server = serverLink($origservername, $dat->serveraddress) . " <a href=\"ladder.php?online={$dat->curserverid}\">$dat->servername</a>";
 		else {
 			$dat->server = humanTime(time() - $dat->lastserverwhen, true) . " ago";
 			

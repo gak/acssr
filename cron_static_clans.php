@@ -1,5 +1,6 @@
 <?
 $nohtml = 1;
+$noob = 1;
 include 'include.php';
 $clans = array();
 $res = $db->query('select clantag, clanpos from user where clantag is not null and clanpos is not null group by clantag, clanpos');
@@ -14,6 +15,8 @@ while ($dat = $db->fetchObject($res)) {
 		$s = str_to_sql('%'.$dat->clantag);
 
 		#	$s = "'%".$dat->clantag."'";
+	
+	print $dat->clantag . ' ';
 		
 	$dCount = $db->quickquery("
 		select count(id) as c, sum(totalfrags) as totalfrags, sum(totaltime) as totaltime
@@ -23,11 +26,11 @@ while ($dat = $db->fetchObject($res)) {
 		and player.score > 0
 	");
 
-//	print $dat->clantag . ' '. $dCount->c . "\n";
-
 	if ($dCount->c < $minclanplayers)
 		continue;
 
+	continue;
+		
 	$dStats = $db->quickquery("
 		select sum(score) as clanscore, max(rank) as clanbestrank
 		from (

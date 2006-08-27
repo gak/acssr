@@ -108,9 +108,9 @@ while (($dat = $db->fetchobject($res))) {
 	$tdalt=($alt)?' class="alt"':'';
 	echo "<tr>";
 	if ($dat->collect)
-		echo "<td$tdalt><b><a href=\"ladder.php?online={$dat->id}\">{$dat->name}</a></b>";
+		echo "<td$tdalt>".serverLink($dat->name, $dat->address)." <b><a href=\"ladder.php?online={$dat->id}\">{$dat->name}</a></b>";
 	else
-		echo "<td$tdalt><a href=\"ladder.php?online={$dat->id}\">{$dat->name}</a>";
+		echo "<td$tdalt>".serverLink($dat->name, $dat->address)." <a href=\"ladder.php?online={$dat->id}\">{$dat->name}</a>";
 
 	if ($isAdmin) {
 		echo ' <small>(<a href="serversSetOfficial.php?id='.$dat->id.'&v='.($dat->collect?'0':'1').'">toggle</a>)</small>';

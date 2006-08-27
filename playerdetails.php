@@ -125,13 +125,13 @@ if ($shouldcompare) {
 			$lastServer = $db->quickquery("select * from server where id = " . $player->data->curserverid);
 			$alt=!$alt;
 			$tdalt=($alt)?' class="alt"':'';
-			echo "<tr><td$tdalt>Currently playing on<td$tdalt><a href=\"ladder.php?online=" . $lastServer->id . "\">" . $lastServer->name . "</a>";
+			echo "<tr><td$tdalt>Currently playing on<td$tdalt>".serverLink($lastServer->name, $lastServer->address)." <a href=\"ladder.php?online=" . $lastServer->id . "\">" . $lastServer->name . "</a>";
 		} else {
 			$lastServer = $db->quickquery("select * from server where id = " . $player->data->lastserverid);
 			if ($lastServer) {
 				$alt=!$alt;
 				$tdalt=($alt)?' class="alt"':'';
-				echo "<tr><td$tdalt>Last seen on<td$tdalt><a href=\"ladder.php?online=" . $lastServer->id . "\">" . $lastServer->name . "</a>";
+				echo "<tr><td$tdalt>Last seen on<td$tdalt>".serverLink($lastServer->name, $lastServer->address)." <a href=\"ladder.php?online=" . $lastServer->id . "\">" . $lastServer->name . "</a>";
 				$alt=!$alt;
 				$tdalt=($alt)?' class="alt"':'';
 				echo "<tr><td$tdalt>Last seen when<td$tdalt>". humanTime(time() - $player->data->lastserverwhen, 1) . " ago";
@@ -403,7 +403,7 @@ while ($dat = $db->fetchObject()) {
 	if ($lastServerID == $dat->serverid)
 		echo $td . '...';
 	else
-		echo $td . '<a href="ladder.php?online='. $dat->serverid . '">' . $dat->servername . '</a>';
+	echo $td . serverLink($lastServer->name, $lastServer->address).' <a href="ladder.php?online='. $dat->serverid . '">' . $dat->servername . '</a>';
 	$lastServerID = $dat->serverid;
 	echo $td . $dat->mapname;
 	echo $td . (($dat->official) ? 'Yes':'No');
