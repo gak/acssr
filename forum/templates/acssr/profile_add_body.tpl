@@ -65,6 +65,15 @@
 	  <td class="row2"><input type="text" class="post" style="width: 200px" name="confirm_code" size="6" maxlength="6" value="" /></td>
 	</tr>
 	<!-- END switch_confirm -->
+
+	<tr>
+		<td class="row1" colspan="2" align="center"><span class="gensmall"></span><br /><br />{MY_CAP_IMAGE}<br /><br /></td>
+	</tr>
+	<tr> 
+	  <td class="row1"><span class="gen">{L_CONFIRM_CODE}: * </span><br /><span class="gensmall">{L_CONFIRM_CODE_EXPLAIN}</span></td>
+	  <td class="row2"><input type="text" class="post" style="width: 200px" name="cap" size="25" value="" /></td>
+	</tr>
+
 	<tr> 
 	  <td class="catSides" colspan="2" height="28">&nbsp;</td>
 	</tr>
@@ -98,12 +107,14 @@
 		<input type="text" class="post"style="width: 150px"  name="yim" size="20" maxlength="255" value="{YIM}" />
 	  </td>
 	</tr>
+<!--
 	<tr> 
 	  <td class="row1"><span class="gen">{L_WEBSITE}:</span></td>
 	  <td class="row2"> 
 		<input type="text" class="post"style="width: 200px"  name="website" size="25" maxlength="255" value="{WEBSITE}" />
 	  </td>
 	</tr>
+-->
 	<tr> 
 	  <td class="row1"><span class="gen">{L_LOCATION}:</span></td>
 	  <td class="row2"> 

@@ -40,6 +40,8 @@ if ( !defined('IN_PHPBB') )
 	exit;
 }
 
+require('../c_captcha.php');
+session_start();
 $unhtml_specialchars_match = array('#&gt;#', '#&lt;#', '#&quot;#', '#&amp;#');
 $unhtml_specialchars_replace = array('>', '<', '"', '&');
 
@@ -320,6 +322,12 @@ if ( isset($HTTP_POST_VARS['submit']) )
 			}
 			$db->sql_freeresult($result);
 		}
+	}
+
+	$cap = $_SESSION['cap'];
+	if ($cap->word != $HTTP_POST_VARS['cap']) {
+		$error = TRUE;
+		$error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
 	}
 
 	$passwd_sql = '';
@@ -616,6 +624,10 @@ if ( isset($HTTP_POST_VARS['submit']) )
 			}
 			$user_id = $row['total'] + 1;
 
+			if ($website != '' or isset($HTTP_POST_VARS['website'])) {
+				message_die(GENERAL_MESSAGE, 'I have detected that you are a spammer. Please die.', '', __LINE__, __FILE__);
+			}
+			
 			//
 			// Get current date
 			//
@@ -1010,6 +1022,12 @@ else
 		$template->assign_block_vars('switch_confirm', array());
 	}
 
+	$p = '/usr/X11R6/lib/X11/fonts/TTF';
+	$fonts = array("$p/comicbd.ttf");
+	$cap = new Captcha(120, 50, $fonts);
+	$cap->generate();
+	$_SESSION['cap'] = $cap;
+	$cap_img = '<img src="'.$cap->filename.'">';
 
 	//
 	// Let's do an overall check for settings/versions which would prevent
@@ -1024,7 +1042,8 @@ else
 		'NEW_PASSWORD' => isset($new_password) ? $new_password : '',
 		'PASSWORD_CONFIRM' => isset($password_confirm) ? $password_confirm : '',
 		'EMAIL' => isset($email) ? $email : '',
-		'CONFIRM_IMG' => $confirm_image, 
+		'CONFIRM_IMG' => $confirm_image,
+		'MY_CAP_IMAGE' => $cap_img,
 		'YIM' => $yim,
 		'ICQ' => $icq,
 		'MSN' => $msn,
