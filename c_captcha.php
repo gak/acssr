@@ -1,6 +1,6 @@
 <?
 
-header('Content-type: image/png');
+#header('Content-type: image/png');
 
 class Captcha {
 
