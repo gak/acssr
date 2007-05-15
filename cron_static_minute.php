@@ -202,6 +202,7 @@ $datVotes = $db->quickquery('select count(id) as c from playervote');
 $_p->point('q9');
 $datFriends = $db->quickquery('select count(userid) as c from friends');
 $_p->point('q10');
+/*
 $datPopularMap = $db->quickquery('
 select map.name, sum(totaltime) as tt
 from playerserverhistory psh, map
@@ -212,6 +213,7 @@ group by mapid
 order by tt desc
 limit 1
 ');
+$_p->point('q10a');
 $datPpmMap = $db->quickquery('
 select map.name, sum(points) / sum(totaltime) * 60 as tt
 from playerserverhistory psh
@@ -220,6 +222,7 @@ group by mapid
 order by tt desc
 limit 1
 ');
+$_p->point('q10b');
 
 $datPpmMapLowest = $db->quickquery('
 select map.name, sum(points) / sum(totaltime) * 60 as tt
@@ -229,6 +232,7 @@ group by mapid
 order by tt
 limit 1
 ');
+$_p->point('q10c');
 $datSkilledServer = $db->quickquery('
 select server.id, server.name, avg(ppm) as tt
 from player, server, map
@@ -243,7 +247,7 @@ group by server.id
 order by tt desc
 limit 1
 ');
-
+*/
 
 $_p->point('quick');
 
@@ -255,9 +259,9 @@ $datStats->hits = number_format($datStats->hits);
 $datStats->searches = number_format($datStats->searches);
 $datFriends->c = number_format($datFriends->c);
 $datVotes->c = number_format($datVotes->c);
-$datPpmMap->tt = number_format($datPpmMap->tt, 2);
-$datPpmMapLowest->tt = number_format($datPpmMapLowest->tt, 2);
-$datSkilledServer->tt = number_format($datSkilledServer->tt, 2);
+#$datPpmMap->tt = number_format($datPpmMap->tt, 2);
+#$datPpmMapLowest->tt = number_format($datPpmMapLowest->tt, 2);
+#$datSkilledServer->tt = number_format($datSkilledServer->tt, 2);
 
 echo "<div class=\"articlebody\">";
 echo "ACSSR has seen a total of <b>{$datServerTotal->c}</b> players, <b>{$datServerOnline->c}</b> of which are in an Australian server right now. ";
@@ -270,9 +274,9 @@ echo "The player with the longest accumulated playing time in the last 14 days i
 #echo "Yesterdays best player was <a href=\"playerdetails.php?id={$datYesterdaysBest->id}\">{$datYesterdaysBest->ename}</a> who had <b>{$datYesterdaysBest->frags} points</b> in <b>".humanTime($datYesterdaysBest->time, true)."</b>.";
 // echo " Here is a daily <a href=\"friendmap/friendmap.png\">social network graph</a> of all ACSSR friends and voters (400KB).";
 
-echo "The most popular map is <a href=\"servers.php?search=$datPopularMap->name\">{$datPopularMap->name}</a> with <b>".humanTime($datPopularMap->tt, 1)."</b> of accumulated player time in the last 24 hours. ";
-echo "The map with the highest points per minute is <a href=\"servers.php?search={$datPpmMap->name}\">{$datPpmMap->name}</a> with an average of <b>{$datPpmMap->tt} P/M</b>. The lowest is <a href=\"servers.php?search={$datPpmMapLowest->name}\">{$datPpmMapLowest->name}</a> with <b>{$datPpmMapLowest->tt} P/M</b>. ";
-echo "Currently the server with the best players is <a href=\"ladder.php?online={$datSkilledServer->id}\">{$datSkilledServer->name}</a> with an average of <b>{$datSkilledServer->tt} P/M</b>. ";
+#echo "The most popular map is <a href=\"servers.php?search=$datPopularMap->name\">{$datPopularMap->name}</a> with <b>".humanTime($datPopularMap->tt, 1)."</b> of accumulated player time in the last 24 hours. ";
+#echo "The map with the highest points per minute is <a href=\"servers.php?search={$datPpmMap->name}\">{$datPpmMap->name}</a> with an average of <b>{$datPpmMap->tt} P/M</b>. The lowest is <a href=\"servers.php?search={$datPpmMapLowest->name}\">{$datPpmMapLowest->name}</a> with <b>{$datPpmMapLowest->tt} P/M</b>. ";
+#echo "Currently the server with the best players is <a href=\"ladder.php?online={$datSkilledServer->id}\">{$datSkilledServer->name}</a> with an average of <b>{$datSkilledServer->tt} P/M</b>. ";
 
 echo "</div>";
 sb('qs');

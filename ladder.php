@@ -18,8 +18,7 @@ $incomingvariables = array(
 
 $sorts = array(
 
-	"name" => array("Name", "name", 0)
-	,"score" => array("Score", "score", 1)
+	"score" => array("Score", "score", 1)
 	,"ppm" => array("Points/Minute", "ppm", 1)
 	,"points" => array("Points", "totalfrags", 1)
 	,"time" => array("Time", "totaltime", 1)

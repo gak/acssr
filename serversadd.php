@@ -16,13 +16,19 @@ if (isset($_POST["ips"])) {
 	
 		$db->quickquery("select * from server where address = '$ip'");
 		
-		if ($db->count())
+		if ($db->count()) {
+			print 'Undeleting '.$ip.'<br>';
+			$sql = "update server set deleted = 0 where address = '$ip'";
+			print $sql."<BR>";
+			$db->query($sql);
 			continue;
+
+		}
 	
 		$sql = "insert into server (address) values ('$ip');";
 		echo $sql . "<br>";
 		//echo mysql_error() . "<br>";
-		$db->quickquery($sql);
+		$db->query($sql);
 	
 	}
 	

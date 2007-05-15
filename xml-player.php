@@ -28,8 +28,12 @@ foreach ($idlist as $id) {
 				
 		if ($field[0] == "Rank") {
 			$moo = $db->quickquery("select rank,day from playerdaily where playerid = $id and rank != 0 order by rank limit 1");
-			
-			echo '<bestrank>'.$moo->rank.'</bestrank>';
+			if (!$moo or !isset($moo->rank)) {
+				$rank = 0;	
+			} else {
+				$rank = $moo->rank;
+			}
+			echo '<bestrank>'.$rank.'</bestrank>';
 		}
 			
 	}
@@ -46,11 +50,15 @@ foreach ($idlist as $id) {
 	}
 
 	$lastServer = $db->quickquery("select * from server where id = " . $player->data->lastserverid);
-	echo '<lastserverid>'.($lastServer->id).'</lastserverid>';
-	echo '<lastserver>'.htmlspecialchars($lastServer->name).'</lastserver>';
-	echo '<lastserveraddress>'.htmlspecialchars($lastServer->address).'</lastserveraddress>';
-	echo '<lastservertime>' .( $player->data->lastserverwhen) . '</lastservertime>';
-	echo '<lastserverago>' .( time() - $player->data->lastserverwhen) . '</lastserverago>';
+	if ($lastServer) {
+		echo '<lastserverid>'.($lastServer->id).'</lastserverid>';
+		echo '<lastserver>'.htmlspecialchars($lastServer->name).'</lastserver>';
+		echo '<lastserveraddress>'.htmlspecialchars($lastServer->address).'</lastserveraddress>';
+		echo '<lastservertime>' .( $player->data->lastserverwhen) . '</lastservertime>';
+		echo '<lastserverago>' .( time() - $player->data->lastserverwhen) . '</lastserverago>';
+	} else {
+		echo '<lastserverid/><lastserver/><lastserveraddress/><lastservertime/><lastserverago/>';
+	}
 
 	$days = 14;
 	$data = getPlayerData($id, $days);

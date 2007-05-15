@@ -16,7 +16,7 @@ function sClose() {
 
 function sRead($id) {
 
-	global $db;
+	$db = new Database();
 	$dat = $db->quickquery("select * from session where id = '$id'");
 
 	if ($db->count() == 0) {
@@ -31,7 +31,6 @@ function sRead($id) {
 
 function sWrite($id, $data) {
 
-	global $db;
 	global $_SERVER;
 	global $_SESSION;
 	
@@ -40,6 +39,7 @@ function sWrite($id, $data) {
 // 	$data = str_replace("'", "''", $data); // this cause problems with wierd utf8 player names (i think)
 	$data = addSlashes($data);
 	
+	$db = new Database();
 	$db->query("select * from session where id = '$id'");
 	if (isset($_SERVER) and isset($_SERVER['REQUEST_URI']))
 		$page = addSlashes($_SERVER["REQUEST_URI"]);
@@ -91,7 +91,7 @@ function sWrite($id, $data) {
 
 function sDestroy($id) {
 
-	global $db;
+	$db = new Database();
 	$db->query("delete from session where id = '$id'");
 
 	return true;

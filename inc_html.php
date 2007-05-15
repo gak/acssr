@@ -21,7 +21,10 @@ header("Cache-Control: no-cache");
 <meta name="description" content="A Counter-Strike:Source player ranking and tracking system that monitors Australian servers">
 </head>
 <body><div class="top"><table class="topoutline"><tr><td class="topoutlinebody">
-
+<!-- <a href="http://www.vindictivegaming.com.au/"><img src="/img/banners/vindictivegaming-standard.jpg"></a> -->
+<?
+if (1) {
+?>
 <!--<a href="l.php"><img src="b.php" alt=""></a>-->
 <script type="text/javascript"><!--
 google_ad_client = "pub-9387561163499032";
@@ -39,6 +42,8 @@ google_color_text = "99FF66";
 <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
+<? } ?>
+  
 </table></div><table class="outline"><tr><td class="outlinebody"><form method="GET" action="search.php"><table style="width: 100%; background-color: #000;" ><tr><td class="navigation"><?
 
 global $db;
@@ -133,6 +138,7 @@ else
 ?>
 
 <hr><div align="center">
+<? if (1) { ?>
 <script type="text/javascript"><!--
 google_ad_client = "pub-9387561163499032";
 google_ad_width = 728;
@@ -149,6 +155,8 @@ google_color_text = "99FF66";
 <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
+<? } ?>
+<!-- <a href="http://www.vindictivegaming.com.au/"><img src="/img/banners/vindictivegaming-large.jpg"></a> -->
 </div><hr>
 <span style="float: right;"><script type="text/javascript"><!--
 google_ad_client = "pub-9387561163499032";
@@ -158,7 +166,8 @@ google_ad_format = "110x32_as_rimg";
 google_cpa_choice = "CAAQpeKZzgEaCL1N-uOV--c-KOP143Q";
 //--></script>
 <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></span>
+</script>
+</span>
 <span style="font-size: 9px;">
 ACSSR was created by <a href="http://slowchop.com/">Slowchop Studios</a>. Thanks to Jon Skinner and <a href="http://swapoff.org/">Alec Thomas</a> for providing code optimisation and <a href="playerdetails.php?id=539723">ren[FBi]</a> and <a href="http://acssr.slowchop.com/playerdetails.php?id=286585">Wally3K</a> for being good helper monkeys.<br>
 ACSSR is best viewed with a resolution of 1024x768 or higher. ACSSR is contactable by emailing 

@@ -15,7 +15,7 @@ $_p = new Profiler("cron_poll.php");
 $cmd = "$qstatpath -nocfg -hpn -nh -ts -P";
 // note that this is a copy and paste from below, i presume there is a way not
 // to have to repeat it
-$res = $db->query("select * from server");
+$res = $db->query("select * from server where deleted = 0 order by rand()");
 while (($dat = $db->fetchobject($res))) {
 	$cmd = $cmd . " -a2s " . $dat->address;
 }
@@ -78,7 +78,7 @@ foreach ($lines as $line) {
 
 $_p->point("output to array", false);
 
-$res = $db->query("select * from server");
+$res = $db->query("select * from server where deleted = 0");
 
 while (($dat = $db->fetchobject($res))) {
 

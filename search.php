@@ -40,7 +40,7 @@ if ($search != "") {
 
 	
 	$extra = "";
-		$extra .= " score != 0 and ";
+	#	$extra .= " score != 0 and ";
 	if (!$allhistory && 0) {
 		$extra .= " player.lastserverwhen > " .  getday(-14) . " and ";
 	}

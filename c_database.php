@@ -96,6 +96,7 @@ class Database {
 		{
 		global $QUERIES;
 		global $QUERY_ERROR;
+		global $_SERVER;
 
 		unset($q);
 
@@ -108,10 +109,20 @@ class Database {
 		
 		$last_mysql_error = mysql_error();
 		#		if ($last_mysql_error != '') echo '<!--'.$query.'--><!--'.$last_mysql_error.'-->';
+		if ($last_mysql_error != '') {
+			//mail('gak@gakman.com', 'sql error', $last_mysql_error . "\n" . $query);
+		}
 
 		if (function_exists("utime"))
 			$q["time"] = (utime() - $t) * 1000;
 
+		if (0 and $q['time'] > 50) {
+			$fp = fopen('sql.log','a');
+			fwrite($fp, $query);
+			fwrite($fp, "\n");
+			fclose($fp);
+		}
+			
 		$q["sql"] = $query;
 		//$q["rows"] = (int)$this->count($this->result);
 		$q["rows"] = 0;
@@ -130,8 +141,8 @@ class Database {
 			
 			global $C_DATABASE_DIEONERROR;
 		
-			if ($C_DATABASE_DIEONERROR)
-				trigger_error("DATABASE ERROR: " . $query . "\n<br>\n" . mysql_error());
+			#			if ($C_DATABASE_DIEONERROR)
+			#	trigger_error("DATABASE ERROR: " . $query . "\n<br>\n" . mysql_error());
 			
 			
 		}

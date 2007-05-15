@@ -42,6 +42,7 @@ $res = $db->query("
 	$sqlgenselect
 	,server.name as servername
 	,server.id as serverid
+	,server.address as serveraddress
 
 	from player
 

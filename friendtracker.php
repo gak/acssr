@@ -46,6 +46,7 @@ if (isset($_SESSION) && isset($_SESSION["user"])) {
 		$sqlgenselect
 		,server.name as servername
 		,server.id as serverid
+		,server.address as serveraddress
 
 		FROM friends
 

@@ -174,6 +174,7 @@ $sqlsel_gen_daily = "
 	
 	,server.name as servername
 	,server.id as serverid
+	,server.address as serveraddress
 
 	FROM playerdaily
 

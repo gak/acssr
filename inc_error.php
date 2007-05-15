@@ -69,8 +69,8 @@ function errorhandler($errno, $errstr, $errfile, $errline) {
 	foreach($bt as $t) {
 	
 		$i++;
-		if ($i <= 2)
-			continue;
+		#		if ($i <= 2)
+		#	continue;
 
 		$outt .= "\n";
 		$outh .= "\n<tr><td>";

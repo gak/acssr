@@ -7,7 +7,7 @@ htmlStart();
 echo '<table><tr><td class="column">';
 	
 require('static/latestword.htm');
-if (1) {
+if (0) {
 homeHeading('Donations');
 ?>
 <div class="articlebody">
@@ -21,7 +21,52 @@ If you enjoy using ACSSR and would like to help support it, please consider maki
 </div>
 <?
 }
-
+if (0) {
+?>
+<div class="articlebody" style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-9387561163499032";
+google_ad_width = 468;
+google_ad_height = 15;
+google_ad_format = "468x15_0ads_al";
+//2006-09-28: acssr - frontpage - text
+google_ad_channel ="0045222066";
+google_color_border = "0D5257";
+google_color_bg = "0D5257";
+google_color_link = "FFFFFF";
+google_color_text = "99FF66";
+google_color_url = "FFF600";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<?
+}
+if (0) {
+//homeHeading('Advertisement');
+?>
+<div class="articlebody" style="text-align: center;">
+<script type="text/javascript"><!--
+google_ad_client = "pub-9387561163499032";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "image";
+//2006-09-28: acssr - frontpage - square
+google_ad_channel ="1572704799";
+google_color_border = "006666";
+google_color_bg = "158289";
+google_color_link = "FFFFFF";
+google_color_text = "99FF66";
+google_color_url = "FFF600";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+</div>
+<?
+}
 if (!isset($_SESSION) || !isset($_SESSION["user"])) {
 	$user = null;
 	homeHeading("Quick Access");
@@ -105,6 +150,7 @@ if (!isset($_SESSION) || !isset($_SESSION["user"])) {
 			$sqlgenselect
 			,server.name as servername
 			,server.id as serverid
+			,server.address as serveraddress
 
 			FROM friends
 
