@@ -35,6 +35,10 @@ body {
         padding: 0px 0px 0px 0px;
 }
 
+img {
+	border: none;
+}
+
 /* General font families for common tags */
 font,th,td,p { font-family: {T_FONTFACE1} }
 a:link,a:active,a:visited { color : {T_BODY_LINK}; }

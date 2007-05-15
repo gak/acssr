@@ -226,6 +226,7 @@ input.liteoption {
 */
 .helpline { background-color: {T_TR_COLOR2}; border-style: none; }
 
+img { border: none; }
 
 /* Import the fancy styles for IE only (NS4.x doesn't use the @import function) */
 @import url("templates/acssr/formIE.css"); 
