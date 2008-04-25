@@ -1,13 +1,13 @@
 <?
 
-$debug = 1;
+$debug = 0;
 $nohtml = 1;
 $noob = 1;
 
 require("include.php");
 set_time_limit(0);
 
-if (!getLock("poll.lock", 60*15)) die();
+#if (!getLock("poll.lock", 60*15)) die();
 
 $_p = new Profiler("cron_poll.php");
 
@@ -19,6 +19,7 @@ $res = $db->query("select * from server where deleted = 0 order by rand()");
 while (($dat = $db->fetchobject($res))) {
 	$cmd = $cmd . " -a2s " . $dat->address;
 }
+
 $_p->point("qstat prep", false);
 $text = `$cmd`;
 $_p->point("qstat");
@@ -286,14 +287,17 @@ while (($dat = $db->fetchobject($res))) {
 		$playersToProcess[] = $player;
 		if ($player->data->id > 0)
 			$playerlist[] = $player->data->id;
-		print "\n";
+		if ($debug)		
+			print "\n";
 
 	}
 
 	unset($p);
 
-	echo "negFragCount: $negFragCount\n";
-	echo "negFragTotal: $negFragTotal\n";
+	if ($debug) {
+		echo "negFragCount: $negFragCount\n";
+		echo "negFragTotal: $negFragTotal\n";
+	}
 
 	$restartedSameMap = 0;
 	if ($negFragCount > $negFragTotal / 2) {
@@ -343,9 +347,11 @@ while (($dat = $db->fetchobject($res))) {
 		
 		if (!$db->count() || !$datLastMap->iscurrent) {
 			$newRow = true;
-			print "Row doesnt exist\n";
+			if ($debug)		
+				print "Row doesnt exist\n";
 		} else if (!$player->timediff) {
-			print "timediff = 0\n";
+			if ($debug)		
+				print "timediff = 0\n";
 			$newRow = true;
 			$sql = "update playerserverhistory set iscurrent = 0 where id = {$datLastMap->id}"; 
 			$db->query($sql);

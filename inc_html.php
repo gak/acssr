@@ -169,7 +169,7 @@ google_cpa_choice = "CAAQpeKZzgEaCL1N-uOV--c-KOP143Q";
 </script>
 </span>
 <span style="font-size: 9px;">
-ACSSR was created by <a href="http://slowchop.com/">Slowchop Studios</a>. Thanks to Jon Skinner and <a href="http://swapoff.org/">Alec Thomas</a> for providing code optimisation and <a href="playerdetails.php?id=539723">ren[FBi]</a> and <a href="http://acssr.slowchop.com/playerdetails.php?id=286585">Wally3K</a> for being good helper monkeys.<br>
+ACSSR was created by <a href="http://geraldkaszuba.com/">Gerald Kaszuba</a>, <a href="http://slowchop.com/">Slowchop Studios</a>. Thanks to Jon Skinner and <a href="http://swapoff.org/">Alec Thomas</a> for providing code optimisation and <a href="playerdetails.php?id=539723">ren[FBi]</a> and <a href="http://acssr.slowchop.com/playerdetails.php?id=286585">Wally3K</a> for being good helper monkeys.<br>
 ACSSR is best viewed with a resolution of 1024x768 or higher. ACSSR is contactable by emailing 
 <script>d="slowchop.com";u="acssr";a="@";e=u+a+d;document.write("<a href=\"mailto:"+e+"\">"+e+"</a>");</script>.
 </span>
@@ -184,6 +184,8 @@ ACSSR is best viewed with a resolution of 1024x768 or higher. ACSSR is contactab
 _uacct = "UA-214748-1";
 urchinTracker();
 </script>
+
+<script type="text/javascript" src="http://cetrk.com/pages/scripts/0006/4379.js"> </script>
 
 </body>
 </html>

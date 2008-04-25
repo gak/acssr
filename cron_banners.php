@@ -1,4 +1,6 @@
 <?
+
+$noob = 1;
 require('include.php');
 require('c_banner.php');
 
@@ -19,11 +21,15 @@ while ($dat = $db->fetchObject($res)) {
 	}
 */
 	echo $name . "\n";
+	echo "n\n";
 	$b = new banner($dat->id);
+	echo "r\n";
 	$b->render();
+	echo "w\n";
 	$b->write($name);
+	echo "d\n";
 	$b->done();
-		
+
 }
 
 ?>

@@ -31,6 +31,26 @@ Type in part of all of the player you're looking for. The search is not case sen
 
 </div>
 
+<br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-9387561163499032";
+google_ad_width = 728;
+google_ad_height = 15;
+google_ad_format = "728x15_0ads_al";
+//2007-09-06: acssr search
+google_ad_channel = "9916894886";
+google_color_border = "006666";
+google_color_bg = "006666";
+google_color_link = "FFFFFF";
+google_color_text = "99FF66";
+google_color_url = "FFF600";
+//-->
+</script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br>
+
 <?
 
 if ($search != "") {
@@ -58,7 +78,7 @@ if ($search != "") {
 			$err = "Your search query is too short. You need to have at least $minc characters, unless you tick \"Exact matches only.\"";
 		}
 	}
-	
+
 	if (!isset($err)) {	
 		$n = str_to_sql($wc1.$search.$wc2);
 		$res = $db->query(
